@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Attack Hitbox
+  - Enemy
   layers:
   - Default
   - TransparentFX
