@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerStateManager<EState> : MonoBehaviour where EState : Enum
+public abstract class StateManager<EState> : MonoBehaviour where EState : Enum
 {
     protected Dictionary<EState, BaseState<EState>> States = new Dictionary<EState, BaseState<EState>>();
     protected BaseState<EState> CurrentState;
@@ -15,7 +15,7 @@ public abstract class PlayerStateManager<EState> : MonoBehaviour where EState : 
 
     }
 
-    protected virtual void Update() {
+    void Update() {
         EState nextStateKey = CurrentState.GetNextState();
 
         if (!IsTransitioningState && nextStateKey.Equals(CurrentState.Statekey))
@@ -32,17 +32,17 @@ public abstract class PlayerStateManager<EState> : MonoBehaviour where EState : 
         IsTransitioningState = false; 
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        CurrentState.OnTriggerEnter(other);
+        CurrentState.OnTriggerEnter2D(collision);
     }
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        CurrentState.OnTriggerStay(other);
+        CurrentState.OnTriggerStay2D(collision);
     }
-
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D collision)
     {
-        CurrentState.OnTriggerExit(other);
+        CurrentState.OnTriggerStay2D(collision);
     }
+    
 }

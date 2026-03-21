@@ -523,8 +523,8 @@ GameObject:
   - component: {fileID: 944856632}
   - component: {fileID: 944856631}
   - component: {fileID: 944856630}
-  - component: {fileID: 944856629}
   - component: {fileID: 944856633}
+  - component: {fileID: 944856629}
   m_Layer: 0
   m_Name: Warrior_Sheet-Effect_0
   m_TagString: Player
@@ -780,27 +780,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 944856624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9c68fa0fe3570144812930f33285f7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 862620f247049bd43993251a09485c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  rb: {fileID: 0}
-  anim: {fileID: 0}
-  moveSpeed: 5
-  jumpForce: 10
-  dashSpeed: 8
-  dashDuration: 0.2
-  dashCooldown: 1
-  lastDashTime: 0
-  attackDuration: 1
-  hitboxPrefab: {fileID: 4819081166333752547, guid: 71ee41d2c5a802840894f417ed13feae, type: 3}
-  attackPoint: {fileID: 904892893}
-  atkDmg: 1
-  isGrounded: 0
-  moveInput: 0
-  jumpPressed: 0
-  dashPressed: 0
-  attackPressed: 0
-  isFacingRight: 1
+  rb: {fileID: 944856631}
+  anim: {fileID: 944856625}
+  pc: {fileID: 944856632}
+  bc: {fileID: 944856630}
+  StateMachine: {fileID: 0}
+  <moveInput>k__BackingField: 0
+  <jump>k__BackingField: 0
+  <dash>k__BackingField: 0
+  <attack>k__BackingField: 0
+  <switchToLight>k__BackingField: 0
+  <switchToDark>k__BackingField: 0
+  onGround: 0
+  <facingRight>k__BackingField: 1
 --- !u!1 &1164904156
 GameObject:
   m_ObjectHideFlags: 0
