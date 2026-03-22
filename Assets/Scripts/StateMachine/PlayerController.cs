@@ -36,7 +36,7 @@ public class PlayerController : PlayerStateManager<PlayerStateEnum>
     public bool jumpPressed;
     public bool dashPressed;
     public bool attackPressed;
-    public bool isFacingRight;
+    public bool isFacingRight = true;
 
     // ─────────────────────────────────────────────────────────────────────────
     void Start()
