@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8894705908813465256}
   - component: {fileID: 1749617074440200882}
   - component: {fileID: 8052929774116789216}
-  - component: {fileID: 4368174644483704929}
+  - component: {fileID: 2088482778260905653}
   m_Layer: 0
   m_Name: Attack Hitbox
   m_TagString: Attack Hitbox
@@ -144,7 +144,7 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: 0.5}
   m_UseDelaunayMesh: 1
---- !u!114 &4368174644483704929
+--- !u!114 &2088482778260905653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4819081166333752547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48608d4817c2a04e8666971c296ca8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b188efbf7bfd6a4f9ecb711766ca400, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackHitbox
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHitboxScript
   atkHitbox: {fileID: 0}
