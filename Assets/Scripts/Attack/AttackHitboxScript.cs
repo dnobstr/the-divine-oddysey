@@ -3,12 +3,15 @@ using UnityEngine;
 public class AttackHitbox : MonoBehaviour
 {
     public PolygonCollider2D atkHitbox;
-    PlayerController pc;
-    PlayerHp hp;
-    public void Init(PlayerController playerController)
+    private PlayerController pc;
+    private PlayerHp hp;
+    private float dmgMultiplier;
+    public void init(PlayerController playerController, float duration, float multiplier)
     {
         pc = playerController;
-        Destroy(gameObject, pc.attackDuration);
+        dmgMultiplier = multiplier;
+
+        Destroy(gameObject, duration);
     }
     void Awake()
     {
@@ -19,9 +22,9 @@ public class AttackHitbox : MonoBehaviour
     {
         if (gameObject.CompareTag(collision.gameObject.tag)) return;
 
-        PlayerHp hp = collision.GetComponent<PlayerHp>();
+        hp = collision.GetComponent<PlayerHp>();
         if (hp == null) return;
 
-        hp.takeDmg(pc.atkDmg);
+        hp.takeDmg(pc.atkDmg * dmgMultiplier);
     }
 }

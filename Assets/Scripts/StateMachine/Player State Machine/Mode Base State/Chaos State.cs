@@ -24,8 +24,6 @@ public class ChaosState : BaseState<PlayerStateKey>
 
     public override void UpdateState()
     {
-        if (player.moveInput != 0) player.move();
-
         if (player.jumpPressed && player.isGrounded)
         {
             player.rb.linearVelocityY = 0f;
@@ -33,22 +31,29 @@ public class ChaosState : BaseState<PlayerStateKey>
             player.anim.SetTrigger("jump");
         }
 
-        if (player.dashPressed && Time.time >= player.lastDashTime + player.dashCooldown)
+        if (player.dashPressed && Time.time >= player.lastDashTime + player.dashDuration)
         {
             player.lastDashTime = Time.time;
             float randomDir = Random.value > 0.5f ? 1f : -1f;
             player.rb.linearVelocity = Vector2.zero;
             player.rb.AddForceX(player.dashSpeed * randomDir, ForceMode2D.Impulse);
-            player.anim.SetTrigger("dash");
+            player.anim.SetBool("dash", true);
         }
 
-        if (player.attackPressed)
+        if (player.attackPressed && player.isGrounded)
         {
             float randomMult = Random.Range(0.5f, 2.5f);
-            var hit = Object.Instantiate(player.hitboxPrefab, player.attackPoint.position, Quaternion.identity);
-            // hit.GetComponent<Hitbox>().SetDamage(player.atkDmg * randomMult);
+            var hitGO = Object.Instantiate(player.hitboxPrefab, player.attackPoint.position, Quaternion.identity);
+            AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
+            hitbox.init(player, 1.5f, randomMult);
+
+
             player.anim.SetTrigger("attack");
             Debug.Log($"[Chaos] Strike — {randomMult:F2}x damage");
+        }
+        else if (player.attackPressed && !player.isGrounded)
+        {
+
         }
     }
 

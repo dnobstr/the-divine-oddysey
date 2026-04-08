@@ -24,9 +24,6 @@ public class OrderState : BaseState<PlayerStateKey>
 
     public override void UpdateState()
     {
-        if (player.moveInput != 0) player.move();
-        else player.stopMove();
-
         if (player.jumpPressed && player.isGrounded)
         {
             player.rb.linearVelocityY = 0f;
@@ -34,20 +31,25 @@ public class OrderState : BaseState<PlayerStateKey>
             player.anim.SetTrigger("jump");
         }
 
-        if (player.dashPressed && Time.time >= player.lastDashTime + player.dashCooldown)
+        if (player.dashPressed && Time.time >= player.lastDashTime + player.dashDuration)
         {
             player.lastDashTime = Time.time;
             player.rb.linearVelocity = Vector2.zero; // blink feel
-            float dir = player.isFacingRight ? 1f : -1f;
-            player.rb.AddForceX(player.dashSpeed * 1.5f * dir, ForceMode2D.Impulse);
-            player.anim.SetTrigger("dash");
+            player.rb.AddForceX(player.dashSpeed * 1.5f * player.direction, ForceMode2D.Impulse);
+            player.anim.SetBool("dash", true);
         }
 
-        if (player.attackPressed)
+        if (player.attackPressed && player.isGrounded)
         {
-            var hit = Object.Instantiate(player.hitboxPrefab, player.attackPoint.position, Quaternion.identity);
-            // hit.GetComponent<Hitbox>().SetDamage(player.atkDmg * 1.75f);
+            var hitGO = Object.Instantiate(player.hitboxPrefab, player.attackPoint.position, Quaternion.identity);
+            AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
+            hitbox.init(player, 0.5f, 1.7f);
+
             player.anim.SetTrigger("attack");
+        }
+        else if (player.attackPressed && !player.isGrounded)
+        {
+
         }
     }
 

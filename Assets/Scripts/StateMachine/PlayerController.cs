@@ -7,7 +7,7 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 {
     public Rigidbody2D rb;
     public Animator anim;
-    public PolygonCollider2D pc;
+    public CapsuleCollider2D cc;
     public BoxCollider2D bc;
 
     [Header("Movement")]
@@ -17,7 +17,6 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     [Header("Dash")]
     public float dashSpeed;
     public float dashDuration;
-    public float dashCooldown;
     public float lastDashTime;
 
     [Header("Attack")]
@@ -29,7 +28,7 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     [Header("Flags")]
     public bool isGrounded;
     public bool isFalling;
-    public bool isFacingRight;
+    public float direction;
     
     [Header("Inputs")]
     public float moveInput;
@@ -45,7 +44,7 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        pc = GetComponent<PolygonCollider2D>();
+        cc = GetComponent<CapsuleCollider2D>();
         bc = GetComponent<BoxCollider2D>();
 
         States[PlayerStateKey.Normal] = new NormalState(PlayerStateKey.Normal, this);
@@ -57,7 +56,14 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
     protected override void Update()
     {
+        if (Time.time < dashDuration + lastDashTime) return;
+
         moveInput = Input.GetAxisRaw("Horizontal");
+        if (moveInput != 0)
+            move();
+        else
+            anim.SetBool("isMoving", false);
+
         jumpPressed = Input.GetButtonDown("Jump");
         dashPressed = Input.GetKeyDown(KeyCode.LeftShift);
         attackPressed = Input.GetMouseButtonDown(0);
@@ -81,15 +87,9 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         handleFlip(moveInput);
         anim.SetBool("isMoving", true);
     }
-
-    public void stopMove()
-    {
-        anim.SetBool("isMoving", false);
-    }
-
     private void falling()
     {
-        if (rb.linearVelocityY < 0)
+        if (rb.linearVelocityY < 0 && !isGrounded)
         {
             isFalling = true;
             anim.SetBool("isFalling", true);
@@ -113,15 +113,16 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
     void handleFlip(float horizontal)
     {
-        if (horizontal > 0 && !isFacingRight) Flip();
-        else if (horizontal < 0 && isFacingRight) Flip();
+        if (horizontal > 0 && direction == -1) Flip();
+        else if (horizontal < 0 && direction == 1) Flip();
     }
 
     void Flip()
     {
-        isFacingRight = !isFacingRight;
+        direction *= -1;
         Vector3 s = transform.localScale;
         s.x *= -1;
         transform.localScale = s;
     }
+
 }
