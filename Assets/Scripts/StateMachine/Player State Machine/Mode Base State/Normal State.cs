@@ -17,7 +17,10 @@ public class NormalState : BaseState<PlayerStateKey>
         Debug.Log("[Normal] Entered");
     }
 
-    public override void ExitState() => Debug.Log("[Normal] Exited");
+    public override void ExitState()
+    {
+        Debug.Log("[Normal] Exited");
+    }
 
     public override PlayerStateKey GetNextState() => nextState;
 
@@ -32,9 +35,7 @@ public class NormalState : BaseState<PlayerStateKey>
 
         if (player.dashPressed)
         {
-            player.lastDashTime = Time.time;
             player.rb.AddForceX(player.dashSpeed * player.direction, ForceMode2D.Impulse);
-            player.anim.SetBool("dash", true);
         }
 
         if (player.attackPressed && player.isGrounded )
@@ -49,6 +50,7 @@ public class NormalState : BaseState<PlayerStateKey>
         {
             GameObject hitGO = Object.Instantiate(player.hitboxPrefab, player.attackPoint.position, Quaternion.Euler(0,0,90));
             AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
+            player.rb.gravityScale = 0;
             hitbox.init(player, 0.5f, 1);
 
             player.anim.SetTrigger("attack");

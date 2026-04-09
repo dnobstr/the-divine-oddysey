@@ -18,7 +18,10 @@ public class OrderState : BaseState<PlayerStateKey>
         Debug.Log("[Order] Entered — precision mode");
     }
 
-    public override void ExitState() => Debug.Log("[Order] Exited");
+    public override void ExitState()
+    {
+        Debug.Log("[Order] Exited");
+    }
 
     public override PlayerStateKey GetNextState() => nextState;
 
@@ -31,12 +34,13 @@ public class OrderState : BaseState<PlayerStateKey>
             player.anim.SetTrigger("jump");
         }
 
-        if (player.dashPressed && Time.time >= player.lastDashTime + player.dashDuration)
+        if (player.dashPressed)
         {
-            player.lastDashTime = Time.time;
-            player.rb.linearVelocity = Vector2.zero; // blink feel
             player.rb.AddForceX(player.dashSpeed * 1.5f * player.direction, ForceMode2D.Impulse);
-            player.anim.SetBool("dash", true);
+
+            OrderDash vanish = player.gameObject.AddComponent<OrderDash>();
+            vanish.Init(player);
+            player.StartCoroutine(vanish.Execute());
         }
 
         if (player.attackPressed && player.isGrounded)

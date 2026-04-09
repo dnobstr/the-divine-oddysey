@@ -10,14 +10,20 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     public CapsuleCollider2D cc;
     public BoxCollider2D bc;
 
+    [Header("Divinity")]
+    public string state;
+    public float divinityMeter;
+
     [Header("Movement")]
     public float moveSpeed;
     public float jumpForce;
+    public float defaultGravityScale;
 
     [Header("Dash")]
     public float dashSpeed;
     public float dashDuration;
     public float lastDashTime;
+    public GameObject trailSegmentPrefab;
 
     [Header("Attack")]
     public float attackDuration;
@@ -47,6 +53,8 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         cc = GetComponent<CapsuleCollider2D>();
         bc = GetComponent<BoxCollider2D>();
 
+        defaultGravityScale = rb.gravityScale;
+
         States[PlayerStateKey.Normal] = new NormalState(PlayerStateKey.Normal, this);
         States[PlayerStateKey.Order] = new OrderState(PlayerStateKey.Order, this);
         States[PlayerStateKey.Chaos] = new ChaosState(PlayerStateKey.Chaos, this);
@@ -56,7 +64,10 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
     protected override void Update()
     {
-        if (Time.time < dashDuration + lastDashTime) return;
+        if (Time.time < dashDuration + lastDashTime)
+            return;
+        else
+            endDash();
 
         moveInput = Input.GetAxisRaw("Horizontal");
         if (moveInput != 0)
@@ -66,6 +77,9 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
         jumpPressed = Input.GetButtonDown("Jump");
         dashPressed = Input.GetKeyDown(KeyCode.LeftShift);
+        if (dashPressed)
+            dash();
+
         attackPressed = Input.GetMouseButtonDown(0);
 
         if (Input.GetKeyDown(KeyCode.LeftControl)) cycleState();
@@ -74,11 +88,30 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
         base.Update();
     }
+    private void dash()
+    {
+        lastDashTime = Time.time;
+        rb.linearVelocity = Vector2.zero;
+        anim.SetBool("isDashing", true);
+
+        // Y by killing gravity and locking vertical velocity
+        rb.gravityScale = 0f;
+        rb.linearVelocityY = 0f;
+    }
+
+    private void endDash()
+    {
+        rb.gravityScale = defaultGravityScale;
+        anim.SetBool("isDashing", false);
+        rb.linearVelocityX = 0;
+    }
+
 
     private void cycleState()
     {
         _cycleIndex = (_cycleIndex + 1) % 3;
         TransitionToState((PlayerStateKey)_cycleIndex);
+        state = CurrentState.ToString();
     }
 
     public void move()

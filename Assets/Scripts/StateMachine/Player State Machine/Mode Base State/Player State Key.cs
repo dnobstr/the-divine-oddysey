@@ -2,5 +2,7 @@ public enum PlayerStateKey
 {
     Normal,
     Order,
-    Chaos
+    Chaos,
+    DivineOrder,
+    DivineChaos
 }

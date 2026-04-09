@@ -18,7 +18,10 @@ public class ChaosState : BaseState<PlayerStateKey>
         Debug.Log("[Chaos] Entered — unleashed");
     }
 
-    public override void ExitState() => Debug.Log("[Chaos] Exited");
+    public override void ExitState()
+    {
+        Debug.Log("[Chaos] Exited");
+    }
 
     public override PlayerStateKey GetNextState() => nextState;
 
@@ -31,13 +34,13 @@ public class ChaosState : BaseState<PlayerStateKey>
             player.anim.SetTrigger("jump");
         }
 
-        if (player.dashPressed && Time.time >= player.lastDashTime + player.dashDuration)
+        if (player.dashPressed)
         {
-            player.lastDashTime = Time.time;
-            float randomDir = Random.value > 0.5f ? 1f : -1f;
-            player.rb.linearVelocity = Vector2.zero;
-            player.rb.AddForceX(player.dashSpeed * randomDir, ForceMode2D.Impulse);
-            player.anim.SetBool("dash", true);
+            player.rb.AddForceX(player.dashSpeed * player.direction, ForceMode2D.Impulse);
+
+            ChaosDash ignition = player.gameObject.AddComponent<ChaosDash>();
+            ignition.Init(player);
+            player.StartCoroutine(ignition.Execute());
         }
 
         if (player.attackPressed && player.isGrounded)
@@ -46,7 +49,6 @@ public class ChaosState : BaseState<PlayerStateKey>
             var hitGO = Object.Instantiate(player.hitboxPrefab, player.attackPoint.position, Quaternion.identity);
             AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
             hitbox.init(player, 1.5f, randomMult);
-
 
             player.anim.SetTrigger("attack");
             Debug.Log($"[Chaos] Strike — {randomMult:F2}x damage");
