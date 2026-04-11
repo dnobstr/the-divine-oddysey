@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 64751845}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AtkHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,49 +531,17 @@ GameObject:
   - component: {fileID: 1231076425}
   - component: {fileID: 1231076424}
   - component: {fileID: 1231076423}
-  - component: {fileID: 1231076421}
   - component: {fileID: 1231076428}
-  m_Layer: 0
+  - component: {fileID: 1231076430}
+  - component: {fileID: 1231076429}
+  - component: {fileID: 1231076431}
+  m_Layer: 6
   m_Name: Warrior_Sheet-Effect_69
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1231076421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231076420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfdc1f50ebe83ad4d997bd78bc40e98c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  cutscene: 0
-  rb: {fileID: 0}
-  anim: {fileID: 0}
-  cc: {fileID: 0}
-  bc: {fileID: 0}
-  moveSpeed: 5
-  jumpForce: 5
-  dashSpeed: 4
-  dashDuration: 1
-  lastDashTime: 0
-  attackDuration: 0.5
-  hitboxPrefab: {fileID: 4819081166333752547, guid: 71ee41d2c5a802840894f417ed13feae, type: 3}
-  attackPoint: {fileID: 64751845}
-  atkDmg: 5
-  isGrounded: 0
-  isFalling: 0
-  direction: 1
-  moveInput: 0
-  jumpPressed: 0
-  dashPressed: 0
-  attackPressed: 0
-  cutscene: 0
 --- !u!50 &1231076423
 Rigidbody2D:
   serializedVersion: 5
@@ -781,6 +749,161 @@ CapsuleCollider2D:
   m_Offset: {x: -0.081857555, y: -0.05998907}
   m_Size: {x: 0.18050288, y: 0.3261143}
   m_Direction: 0
+--- !u!114 &1231076429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231076420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda63a1f0aa55fb4fa903a613171b520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  normal:
+    jump:
+      force: 5
+      gravityScale: 1
+    dash:
+      speed: 10
+      duration: 0.5
+      lastDashTime: 0
+      meterGain: 0
+    attack:
+      damage: 10
+      duration: 0.5
+      multiplier: 1
+      meterGain: 10
+      jumpAtkMultiplier: 1
+      jumpAtkDownForce: 2
+      attackHb: {fileID: 4819081166333752547, guid: 71ee41d2c5a802840894f417ed13feae, type: 3}
+      jumpAttackHb: {fileID: 4819081166333752547, guid: 71ee41d2c5a802840894f417ed13feae, type: 3}
+  order:
+    jump:
+      force: 10
+      gravityScale: 1
+    dash:
+      speed: 10
+      duration: 0.75
+      lastDashTime: 0
+      meterGain: 10
+    attack:
+      damage: 15
+      duration: 0.5
+      multiplier: 1
+      meterGain: 10
+      jumpAtkMultiplier: 1.5
+      jumpAtkDownForce: 5
+      attackHb: {fileID: 4819081166333752547, guid: 71ee41d2c5a802840894f417ed13feae, type: 3}
+      jumpAttackHb: {fileID: 4819081166333752547, guid: 71ee41d2c5a802840894f417ed13feae, type: 3}
+    windupDuration: 1
+    resolveDuration: 1
+    divineWindupDuration: 1.5
+    divineResolveDuration: 1
+    divineMeterGain: 10
+    divineTimerDamagePerSecond: 1
+    freezeRadius: 2
+  chaos:
+    jump:
+      force: 5
+      gravityScale: 1
+    dash:
+      speed: 10
+      duration: 0.25
+      lastDashTime: 0
+      meterGain: 10
+    trailTickRate: 5
+    trailLifetime: 3
+    trailDOTMultiplier: 1
+    selfDOTMultiplier: 0.05
+    selfDOTTicks: 10
+    selfDOTInterval: 0.25
+    trailSegmentPrefab: {fileID: 6932803162986709617, guid: 2ff7a9828446ef545b22b6b49727b88d, type: 3}
+    attack:
+      damage: 5
+      duration: 0.5
+      multiplier: 1
+      meterGain: 5
+      jumpAtkMultiplier: 1.5
+      jumpAtkDownForce: 5
+      attackHb: {fileID: 4819081166333752547, guid: 71ee41d2c5a802840894f417ed13feae, type: 3}
+      jumpAttackHb: {fileID: 4819081166333752547, guid: 71ee41d2c5a802840894f417ed13feae, type: 3}
+    chainStartInterval: 0.2
+    chainMinInterval: 0.1
+    chainSpeedStep: 0.04
+    chainInputWindow: 0.3
+    chainCount: 0
+    divineChainStartInterval: 0
+    divineChainMinInterval: 0.25
+    divineChainSpeedStep: 1.1
+    divineSelfDOTMultiplier: 0.1
+    divineMeterTopUp: 10
+    blastProcThreshold: 3
+    blastProcRadius: 2
+    blastProcMultiplier: 1.5
+--- !u!114 &1231076430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231076420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfdc1f50ebe83ad4d997bd78bc40e98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  cutscene: 0
+  rb: {fileID: 0}
+  anim: {fileID: 0}
+  cc: {fileID: 0}
+  bc: {fileID: 0}
+  stateMeter: {fileID: 0}
+  stats: {fileID: 0}
+  state: 
+  divinityMeter: 0
+  moveSpeed: 5
+  defaultGravityScale: 1
+  isGrounded: 0
+  isDashing: 0
+  isFalling: 0
+  direction: 1
+  moveInput: 0
+  jumpPressed: 0
+  dashPressed: 0
+  attackPressed: 0
+--- !u!114 &1231076431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231076420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb14e68bd79a9e468074584346a40a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StateMeter
+  minValue: -100
+  maxValue: 100
+  currentValue: 0
+  orderThreshold: 100
+  chaosThreshold: -100
+  onDivineOrder:
+    m_PersistentCalls:
+      m_Calls: []
+  onDivineOrderBroken:
+    m_PersistentCalls:
+      m_Calls: []
+  onDivineChaos:
+    m_PersistentCalls:
+      m_Calls: []
+  onDivineChaosBroken:
+    m_PersistentCalls:
+      m_Calls: []
+  isDivineOrder: 0
+  isDivineChaos: 0
 --- !u!1 &1356611892
 GameObject:
   m_ObjectHideFlags: 0

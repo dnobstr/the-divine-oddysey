@@ -7,7 +7,7 @@ public class OrderDash : MonoBehaviour
     private PlayerController player;
     private SpriteRenderer sr;
 
-    public void Init(PlayerController player)
+    public void init(PlayerController player)
     {
         this.player = player;
         sr = player.GetComponent<SpriteRenderer>();
@@ -15,15 +15,13 @@ public class OrderDash : MonoBehaviour
 
     public IEnumerator Execute()
     {
-        float originalGravity = player.rb.gravityScale;
-        // Go invisible
         SetVisibility(false);
 
-        yield return new WaitUntil(() => !player.dashPressed);
+        yield return new WaitUntil(() => !player.isDashing);
+
+        player.stateMeter.AddOrder(player.stats.order.dash.meterGain);
 
         SetVisibility(true);
-
-        originalGravity = player.rb.gravityScale;
     }
 
     private void SetVisibility(bool visible)
@@ -46,20 +44,5 @@ public class OrderDash : MonoBehaviour
         // The third parameter 'ignore' should be the opposite of 'visible'
         // If visible is false, we WANT to ignore collision (true)
         Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, !visible);
-    }
-
-    private IEnumerator DashRoutine()
-    {
-        float originalGravity = player.rb.gravityScale;
-
-        // Start Dash
-        player.rb.gravityScale = 0;
-        player.rb.linearVelocity = new Vector2(player.rb.linearVelocity.x, 0); // Freeze Y
-
-        yield return new WaitForSeconds(player.dashDuration);
-
-        // End Dash - Restore normal physics
-        player.rb.gravityScale = originalGravity;
-        player.anim.SetBool("isDashing", false);
     }
 }

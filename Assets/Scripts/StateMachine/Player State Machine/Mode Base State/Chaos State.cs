@@ -30,28 +30,26 @@ public class ChaosState : BaseState<PlayerStateKey>
         if (player.jumpPressed && player.isGrounded)
         {
             player.rb.linearVelocityY = 0f;
-            player.rb.AddForceY(player.jumpForce * 1.5f, ForceMode2D.Impulse); // explosive
+            player.rb.AddForceY(player.stats.chaos.jump.force, ForceMode2D.Impulse);
             player.anim.SetTrigger("jump");
         }
 
         if (player.dashPressed)
         {
-            player.rb.AddForceX(player.dashSpeed * player.direction, ForceMode2D.Impulse);
+            player.rb.AddForceX(player.stats.chaos.dash.speed * player.direction, ForceMode2D.Impulse);
 
             ChaosDash ignition = player.gameObject.AddComponent<ChaosDash>();
-            ignition.Init(player);
-            player.StartCoroutine(ignition.Execute());
+            ignition.init(player);
+            player.StartCoroutine(ignition.execute());
         }
 
         if (player.attackPressed && player.isGrounded)
         {
-            float randomMult = Random.Range(0.5f, 2.5f);
-            var hitGO = Object.Instantiate(player.hitboxPrefab, player.attackPoint.position, Quaternion.identity);
-            AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
-            hitbox.init(player, 1.5f, randomMult);
+            ChaosAttack attack = player.gameObject.AddComponent<ChaosAttack>();
+            attack.init(player);
+            player.StartCoroutine(attack.execute());
 
-            player.anim.SetTrigger("attack");
-            Debug.Log($"[Chaos] Strike — {randomMult:F2}x damage");
+            player.anim.SetTrigger("attack");   
         }
         else if (player.attackPressed && !player.isGrounded)
         {

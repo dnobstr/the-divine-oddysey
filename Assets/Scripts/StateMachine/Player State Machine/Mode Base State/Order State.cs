@@ -30,26 +30,24 @@ public class OrderState : BaseState<PlayerStateKey>
         if (player.jumpPressed && player.isGrounded)
         {
             player.rb.linearVelocityY = 0f;
-            player.rb.AddForceY(player.jumpForce * 1.2f, ForceMode2D.Impulse); // floatier
+            player.rb.AddForceY(player.stats.order.jump.force, ForceMode2D.Impulse);
             player.anim.SetTrigger("jump");
         }
 
         if (player.dashPressed)
         {
-            player.rb.AddForceX(player.dashSpeed * 1.5f * player.direction, ForceMode2D.Impulse);
+            player.rb.AddForceX(player.stats.order.dash.speed * 1.5f * player.direction, ForceMode2D.Impulse);
 
             OrderDash vanish = player.gameObject.AddComponent<OrderDash>();
-            vanish.Init(player);
+            vanish.init(player);
             player.StartCoroutine(vanish.Execute());
         }
 
         if (player.attackPressed && player.isGrounded)
         {
-            var hitGO = Object.Instantiate(player.hitboxPrefab, player.attackPoint.position, Quaternion.identity);
-            AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
-            hitbox.init(player, 0.5f, 1.7f);
-
-            player.anim.SetTrigger("attack");
+            OrderAttack attack = player.gameObject.AddComponent<OrderAttack>();
+            attack.init(player);
+            player.StartCoroutine(attack.execute());
         }
         else if (player.attackPressed && !player.isGrounded)
         {

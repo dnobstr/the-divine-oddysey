@@ -1,6 +1,3 @@
-using NUnit.Framework.Interfaces;
-using System;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class PlayerController : PlayerStateManager<PlayerStateKey>
@@ -9,6 +6,8 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     public Animator anim;
     public CapsuleCollider2D cc;
     public BoxCollider2D bc;
+    public StateMeter stateMeter;
+    public PlayerStats stats;
 
     [Header("Divinity")]
     public string state;
@@ -16,23 +15,11 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
     [Header("Movement")]
     public float moveSpeed;
-    public float jumpForce;
     public float defaultGravityScale;
-
-    [Header("Dash")]
-    public float dashSpeed;
-    public float dashDuration;
-    public float lastDashTime;
-    public GameObject trailSegmentPrefab;
-
-    [Header("Attack")]
-    public float attackDuration;
-    public GameObject hitboxPrefab;
-    public Transform attackPoint;
-    public float atkDmg;
 
     [Header("Flags")]
     public bool isGrounded;
+    public bool isDashing;
     public bool isFalling;
     public float direction;
     
@@ -43,8 +30,8 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     public bool attackPressed;
     private int _cycleIndex = 0;
 
-    [Header("Cutscene")]
-    public bool cutscene;
+    //[Header("Cutscene")]
+    //public bool cutscene;
 
     void Awake()
     {
@@ -52,19 +39,29 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         anim = GetComponent<Animator>();
         cc = GetComponent<CapsuleCollider2D>();
         bc = GetComponent<BoxCollider2D>();
+        stateMeter = GetComponent<StateMeter>();
+        stats = GetComponent<PlayerStats>();
 
         defaultGravityScale = rb.gravityScale;
 
         States[PlayerStateKey.Normal] = new NormalState(PlayerStateKey.Normal, this);
         States[PlayerStateKey.Order] = new OrderState(PlayerStateKey.Order, this);
         States[PlayerStateKey.Chaos] = new ChaosState(PlayerStateKey.Chaos, this);
+        States[PlayerStateKey.DivineOrder] = new DivineOrderState(PlayerStateKey.DivineOrder, this);
+        States[PlayerStateKey.DivineChaos] = new DivineChaosState(PlayerStateKey.DivineChaos, this);
 
         CurrentState = States[PlayerStateKey.Normal];
+
+        stateMeter.onDivineOrder.AddListener(() => TransitionToState(PlayerStateKey.DivineOrder));
+        stateMeter.onDivineOrderBroken.AddListener(() => TransitionToState(PlayerStateKey.Order));
+
+        stateMeter.onDivineChaos.AddListener(() => TransitionToState(PlayerStateKey.DivineChaos));
+        stateMeter.onDivineChaosBroken.AddListener(() => TransitionToState(PlayerStateKey.Chaos));
     }
 
     protected override void Update()
     {
-        if (Time.time < dashDuration + lastDashTime)
+        if (Time.time < stats.normal.dash.duration + stats.normal.dash.lastDashTime)
             return;
         else
             endDash();
@@ -90,17 +87,18 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     }
     private void dash()
     {
-        lastDashTime = Time.time;
+        isDashing = true;
+        stats.normal.dash.lastDashTime = Time.time;
         rb.linearVelocity = Vector2.zero;
         anim.SetBool("isDashing", true);
 
-        // Y by killing gravity and locking vertical velocity
         rb.gravityScale = 0f;
         rb.linearVelocityY = 0f;
     }
 
     private void endDash()
     {
+        isDashing = false;
         rb.gravityScale = defaultGravityScale;
         anim.SetBool("isDashing", false);
         rb.linearVelocityX = 0;

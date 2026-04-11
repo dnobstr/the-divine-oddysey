@@ -5,11 +5,11 @@ public class AttackHitbox : MonoBehaviour
     public PolygonCollider2D atkHitbox;
     private PlayerController player;
     private PlayerHp hp;
-    private float dmgMultiplier;
-    public void init(PlayerController playerController, float duration, float multiplier)
+    private float dmg;
+    public void init(PlayerController playerController, float duration, float dmg)
     {
         player = playerController;
-        dmgMultiplier = multiplier;
+        dmg = dmg;
 
         Destroy(gameObject, duration);
     }
@@ -23,14 +23,11 @@ public class AttackHitbox : MonoBehaviour
         if (gameObject.CompareTag(collision.gameObject.tag))
             return;
 
-        if (player.dashPressed && Time.time < Time.time + player.dashDuration && (player.state.Equals("Order") || player.state.Equals("DivineOrder")))
-            return;
-
         hp = collision.GetComponent<PlayerHp>();
         
         if (hp == null) 
             return;
 
-        hp.takeDmg(player.atkDmg * dmgMultiplier);
+        hp.takeDmg(dmg);
     }
 }

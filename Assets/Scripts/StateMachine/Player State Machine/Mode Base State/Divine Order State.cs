@@ -1,12 +1,12 @@
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class NormalState : BaseState<PlayerStateKey>
+public class DivineOrderState : BaseState<PlayerStateKey>
 {
     private readonly PlayerController player;
     private PlayerStateKey nextState;
 
-    public NormalState(PlayerStateKey key, PlayerController p) : base(key)
+    public DivineOrderState(PlayerStateKey key, PlayerController p) : base(key)
     {
         player = p;
         nextState = key;
@@ -15,12 +15,12 @@ public class NormalState : BaseState<PlayerStateKey>
     public override void EnterState()
     {
         nextState = Statekey;
-        Debug.Log("[Normal] Entered");
+        Debug.Log("Divine Order Entered");
     }
 
     public override void ExitState()
     {
-        Debug.Log("[Normal] Exited");
+        Debug.Log("Divine Order Exited");
     }
 
     public override PlayerStateKey GetNextState() => nextState;

@@ -1,12 +1,12 @@
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class NormalState : BaseState<PlayerStateKey>
+public class DivineChaosState : BaseState<PlayerStateKey>
 {
     private readonly PlayerController player;
     private PlayerStateKey nextState;
 
-    public NormalState(PlayerStateKey key, PlayerController p) : base(key)
+    public DivineChaosState(PlayerStateKey key, PlayerController p) : base(key)
     {
         player = p;
         nextState = key;
@@ -15,12 +15,12 @@ public class NormalState : BaseState<PlayerStateKey>
     public override void EnterState()
     {
         nextState = Statekey;
-        Debug.Log("[Normal] Entered");
+        Debug.Log("Divine Chaos Entered");
     }
 
     public override void ExitState()
     {
-        Debug.Log("[Normal] Exited");
+        Debug.Log("Divine Chaos Exited");
     }
 
     public override PlayerStateKey GetNextState() => nextState;
@@ -41,7 +41,7 @@ public class NormalState : BaseState<PlayerStateKey>
             Debug.Log("dash: " + player.stats.normal.dash.speed * player.direction);
         }
 
-        if (player.attackPressed && player.isGrounded )
+        if (player.attackPressed && player.isGrounded)
         {
             GameObject hitGO = Object.Instantiate(player.stats.normal.attack.attackHb, player.transform.position, Quaternion.identity);
             AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
@@ -51,7 +51,7 @@ public class NormalState : BaseState<PlayerStateKey>
         }
         else if (player.attackPressed && !player.isGrounded)
         {
-            GameObject hitGO = Object.Instantiate(player.stats.normal.attack.jumpAttackHb, player.transform.position, Quaternion.Euler(0,0,90));
+            GameObject hitGO = Object.Instantiate(player.stats.normal.attack.jumpAttackHb, player.transform.position, Quaternion.Euler(0, 0, 90));
             AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
             player.rb.gravityScale = 0;
             hitbox.init(player, 0.5f, 1);

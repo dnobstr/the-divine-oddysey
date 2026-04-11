@@ -6,47 +6,46 @@ public class ChaosDash : MonoBehaviour
 {
     [Header("Trail")]
     public GameObject trailSegmentPrefab; // a trigger zone that applies DOT
-    public float trailTickRate = 0.05f;   // how often a segment is placed
 
     private PlayerController player;
 
-    public void Init(PlayerController player)
+    public void init(PlayerController player)
     {
         this.player = player;
-        this.trailSegmentPrefab = player.trailSegmentPrefab;
+        this.trailSegmentPrefab = player.stats.chaos.trailSegmentPrefab;
 
+        Destroy(gameObject, player.stats.chaos.dash.duration + player.stats.chaos.trailLifetime);
     }
 
-    public IEnumerator Execute()
+    public IEnumerator execute()
     {
-        float originalGravity = player.rb.gravityScale;
-
         float elapsed = 0f;
 
-        while (player.dashPressed)
+        while (player.isDashing)
         {
             player.rb.gravityScale = 0;
-            SpawnTrailSegment();
-            elapsed += trailTickRate;
-            yield return new WaitForSeconds(trailTickRate);
+            spawnTrailSegment();
+            elapsed += player.stats.chaos.trailTickRate;
+            yield return new WaitForSeconds(player.stats.chaos.trailTickRate);
         }
-        originalGravity = player.rb.gravityScale;
+
+        player.stateMeter.AddChaos(player.stats.chaos.dash.meterGain);
 
         // DOT ticks on self immediately on land
-        StartCoroutine(ApplySelfDOT());
+        StartCoroutine(applySelfDOT());
     }
 
-    private void SpawnTrailSegment()
+    private void spawnTrailSegment()
     {
         if (trailSegmentPrefab == null) return;
         GameObject seg = Instantiate(trailSegmentPrefab, player.transform.position, Quaternion.identity);
         seg.GetComponent<FireTrailSegment>()?.Init(player, false);
     }
 
-    private IEnumerator ApplySelfDOT()
+    private IEnumerator applySelfDOT()
     {
         int ticks = 3;
-        float dps = player.atkDmg * 0.1f;
+        float dps = player.stats.chaos.attack.damage * 0.1f;
         PlayerHp selfHp = player.GetComponent<PlayerHp>();
 
         for (int i = 0; i < ticks; i++)
@@ -54,20 +53,5 @@ public class ChaosDash : MonoBehaviour
             selfHp?.takeDmg(dps);
             yield return new WaitForSeconds(0.5f);
         }
-    }
-
-    private IEnumerator DashRoutine()
-    {
-        float originalGravity = player.rb.gravityScale;
-
-        // Start Dash
-        player.rb.gravityScale = 0;
-        player.rb.linearVelocity = new Vector2(player.rb.linearVelocity.x, 0); // Freeze Y
-
-        yield return new WaitForSeconds(player.dashDuration);
-
-        // End Dash - Restore normal physics
-        player.rb.gravityScale = originalGravity;
-        player.anim.SetBool("isDashing", false);
     }
 }

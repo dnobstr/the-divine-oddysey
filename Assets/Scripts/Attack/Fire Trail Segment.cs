@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class FireTrailSegment : MonoBehaviour
 {
-    public float lifetime = 2;
-    public float dps = 5;
+    public float dps;
     public bool isBlastProc;              // Divine Chaos only
     public float blastProcThreshold = 1; // seconds before blast
 
@@ -16,9 +15,9 @@ public class FireTrailSegment : MonoBehaviour
     public void Init(PlayerController player, bool blastProc)
     {
         this.player = player;
-        dps = player.atkDmg * 0.2f;
+        dps = player.stats.chaos.attack.damage * player.stats.chaos.trailDOTMultiplier;
         isBlastProc = blastProc;
-        Destroy(gameObject, lifetime);
+        Destroy(gameObject, player.stats.chaos.trailLifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -61,7 +60,7 @@ public class FireTrailSegment : MonoBehaviour
         {
             if (hit.CompareTag(player.tag)) continue;
             PlayerHp hp = hit.GetComponent<PlayerHp>();
-            hp?.takeDmg(player.atkDmg * 1.5f);
+            hp?.takeDmg(player.stats.chaos.attack.damage * 1.5f);
         }
 
         // Optional: spawn VFX prefab here
