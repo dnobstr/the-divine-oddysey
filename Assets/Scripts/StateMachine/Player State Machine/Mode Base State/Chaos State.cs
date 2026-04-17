@@ -29,15 +29,13 @@ public class ChaosState : BaseState<PlayerStateKey>
     {
         if (player.jumpPressed && player.isGrounded)
         {
-            player.rb.linearVelocityY = 0f;
-            player.rb.AddForceY(player.stats.chaos.jump.force, ForceMode2D.Impulse);
-            player.anim.SetTrigger("jump");
+            ChaosJump jump = player.gameObject.AddComponent<ChaosJump>();
+            jump.init(player);
+            player.StartCoroutine(jump.execute());
         }
 
         if (player.dashPressed)
         {
-            player.rb.AddForceX(player.stats.chaos.dash.speed * player.direction, ForceMode2D.Impulse);
-
             ChaosDash ignition = player.gameObject.AddComponent<ChaosDash>();
             ignition.init(player);
             player.StartCoroutine(ignition.execute());

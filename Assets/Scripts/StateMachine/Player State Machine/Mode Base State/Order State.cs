@@ -29,15 +29,13 @@ public class OrderState : BaseState<PlayerStateKey>
     {
         if (player.jumpPressed && player.isGrounded)
         {
-            player.rb.linearVelocityY = 0f;
-            player.rb.AddForceY(player.stats.order.jump.force, ForceMode2D.Impulse);
-            player.anim.SetTrigger("jump");
+            OrderJump jump= player.gameObject.AddComponent<OrderJump>();
+            jump.init(player);
+            player.StartCoroutine(jump.execute());
         }
 
         if (player.dashPressed)
         {
-            player.rb.AddForceX(player.stats.order.dash.speed * 1.5f * player.direction, ForceMode2D.Impulse);
-
             OrderDash vanish = player.gameObject.AddComponent<OrderDash>();
             vanish.init(player);
             player.StartCoroutine(vanish.Execute());

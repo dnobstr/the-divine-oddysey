@@ -12,16 +12,16 @@ public class ChaosAttack : MonoBehaviour
     public IEnumerator execute()
     {
         player.attackPressed = true;
-        player.stats.chaos.chainCount = 0;
+        player.stats.chaos.chain.count = 0;
 
-        while (player.attackPressed || player.stats.chaos.chainCount == 0)
+        while (player.attackPressed || player.stats.chaos.chain.count == 0)
         {
-            player.stats.chaos.chainCount++;
+            player.stats.chaos.chain.count++;
 
             // Speed climbs with each chain — interval shrinks
             float interval = Mathf.Max(
-                player.stats.chaos.chainMinInterval,
-                player.stats.chaos.chainStartInterval - (player.stats.chaos.chainCount * player.stats.chaos.chainSpeedStep)
+                player.stats.chaos.chain.minInterval,
+                player.stats.chaos.chain.startInterval - (player.stats.chaos.chain.count * player.stats.chaos.chain.speedStep)
             );
 
             player.anim.SetTrigger("attack");
@@ -47,7 +47,7 @@ public class ChaosAttack : MonoBehaviour
             if (!chained) break;
         }
 
-        player.stats.chaos.chainCount = 0;
+        player.stats.chaos.chain.count = 0;
         player.attackPressed= false;
         Destroy(this);
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : PlayerStateManager<PlayerStateKey>
@@ -9,10 +10,6 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     public StateMeter stateMeter;
     public PlayerStats stats;
 
-    [Header("Divinity")]
-    public string state;
-    public float divinityMeter;
-
     [Header("Movement")]
     public float moveSpeed;
     public float defaultGravityScale;
@@ -21,6 +18,7 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     public bool isGrounded;
     public bool isDashing;
     public bool isFalling;
+    public bool canAirAttack;
     public float direction;
     
     [Header("Inputs")]
@@ -61,11 +59,6 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
     protected override void Update()
     {
-        if (Time.time < stats.normal.dash.duration + stats.normal.dash.lastDashTime)
-            return;
-        else
-            endDash();
-
         moveInput = Input.GetAxisRaw("Horizontal");
         if (moveInput != 0)
             move();
@@ -75,7 +68,7 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         jumpPressed = Input.GetButtonDown("Jump");
         dashPressed = Input.GetKeyDown(KeyCode.LeftShift);
         if (dashPressed)
-            dash();
+            StartCoroutine(DashRoutine());
 
         attackPressed = Input.GetMouseButtonDown(0);
 
@@ -85,39 +78,36 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
         base.Update();
     }
-    private void dash()
-    {
-        isDashing = true;
-        stats.normal.dash.lastDashTime = Time.time;
-        rb.linearVelocity = Vector2.zero;
-        anim.SetBool("isDashing", true);
-
-        rb.gravityScale = 0f;
-        rb.linearVelocityY = 0f;
-    }
-
-    private void endDash()
-    {
-        isDashing = false;
-        rb.gravityScale = defaultGravityScale;
-        anim.SetBool("isDashing", false);
-        rb.linearVelocityX = 0;
-    }
-
-
-    private void cycleState()
-    {
-        _cycleIndex = (_cycleIndex + 1) % 3;
-        TransitionToState((PlayerStateKey)_cycleIndex);
-        state = CurrentState.ToString();
-    }
-
     public void move()
     {
         rb.linearVelocityX = moveSpeed * moveInput;
         handleFlip(moveInput);
         anim.SetBool("isMoving", true);
     }
+
+    IEnumerator DashRoutine()
+    {
+        isDashing = true;
+        rb.linearVelocity = Vector2.zero;
+        anim.SetBool("isDashing", true);
+
+        rb.gravityScale = 0f;
+        rb.linearVelocityY = 0f;
+
+        yield return new WaitForSeconds(stats.normal.dash.duration);
+
+        isDashing = false;
+        rb.gravityScale = defaultGravityScale;
+        anim.SetBool("isDashing", false);
+        rb.linearVelocityX = 0;
+    }
+
+    private void cycleState()
+    {
+        _cycleIndex = (_cycleIndex + 1) % 3;
+        TransitionToState((PlayerStateKey)_cycleIndex);
+    }
+
     private void falling()
     {
         if (rb.linearVelocityY < 0 && !isGrounded)
@@ -130,16 +120,6 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
             isFalling = false;
             anim.SetBool("isFalling", false);
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        isGrounded = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        isGrounded = false;
     }
 
     void handleFlip(float horizontal)

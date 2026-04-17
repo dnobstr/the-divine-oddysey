@@ -15,11 +15,15 @@ public class OrderDash : MonoBehaviour
 
     public IEnumerator Execute()
     {
+        float dashEndTime = Time.time + player.stats.order.dash.duration;
+
         SetVisibility(false);
 
-        yield return new WaitUntil(() => !player.isDashing);
+        player.rb.AddForceX(player.stats.order.dash.speed * 1.5f * player.direction, ForceMode2D.Impulse);
 
         player.stateMeter.AddOrder(player.stats.order.dash.meterGain);
+
+        yield return new WaitUntil(() => Time.time >= dashEndTime);
 
         SetVisibility(true);
     }

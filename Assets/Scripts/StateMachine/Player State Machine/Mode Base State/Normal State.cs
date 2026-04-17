@@ -37,8 +37,6 @@ public class NormalState : BaseState<PlayerStateKey>
         if (player.dashPressed)
         {
             player.rb.AddForceX(player.stats.normal.dash.speed * player.direction, ForceMode2D.Impulse);
-            Debug.Log("dash: " + player.stats.normal.dash.speed);
-            Debug.Log("dash: " + player.stats.normal.dash.speed * player.direction);
         }
 
         if (player.attackPressed && player.isGrounded )
@@ -51,7 +49,7 @@ public class NormalState : BaseState<PlayerStateKey>
         }
         else if (player.attackPressed && !player.isGrounded)
         {
-            GameObject hitGO = Object.Instantiate(player.stats.normal.attack.jumpAttackHb, player.transform.position, Quaternion.Euler(0,0,90));
+            GameObject hitGO = Object.Instantiate(player.stats.normal.attack.attackHb, player.transform.position, Quaternion.Euler(0,0,90));
             AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
             player.rb.gravityScale = 0;
             hitbox.init(player, 0.5f, 1);

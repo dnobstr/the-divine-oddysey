@@ -51,7 +51,7 @@ public class DivineChaosState : BaseState<PlayerStateKey>
         }
         else if (player.attackPressed && !player.isGrounded)
         {
-            GameObject hitGO = Object.Instantiate(player.stats.normal.attack.jumpAttackHb, player.transform.position, Quaternion.Euler(0, 0, 90));
+            GameObject hitGO = Object.Instantiate(player.stats.normal.attack.attackHb, player.transform.position, Quaternion.Euler(0, 0, 90));
             AttackHitbox hitbox = hitGO.GetComponent<AttackHitbox>();
             player.rb.gravityScale = 0;
             hitbox.init(player, 0.5f, 1);

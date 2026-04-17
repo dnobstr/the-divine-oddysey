@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: 4d28f3980662dc447a08d34fdfbf6a8c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2167231603229147432
+    second: mcLightAtkGround_0
+  - first:
+      213: 7375164609983360564
+    second: mcLightAtkGround_1
+  - first:
+      213: -42271070867336838
+    second: mcLightAtkGround_2
+  - first:
+      213: -348784078137204455
+    second: mcLightAtkGround_3
+  - first:
+      213: 5212248184329380506
+    second: mcLightAtkGround_4
+  - first:
+      213: 3268222008384944192
+    second: mcLightAtkGround_5
+  - first:
+      213: -438900892010273201
+    second: mcLightAtkGround_6
+  - first:
+      213: -5596897074076331092
+    second: mcLightAtkGround_7
+  - first:
+      213: -7137459990815539601
+    second: mcLightAtkGround_8
+  - first:
+      213: -8789684547401307242
+    second: mcLightAtkGround_9
+  - first:
+      213: 7943418114142925264
+    second: mcLightAtkGround_10
+  - first:
+      213: 4250026831905246812
+    second: mcLightAtkGround_11
+  - first:
+      213: -5611983390679688588
+    second: mcLightAtkGround_12
+  - first:
+      213: 1499699805698806807
+    second: mcLightAtkGround_13
+  - first:
+      213: -7639002690488712817
+    second: mcLightAtkGround_14
+  - first:
+      213: 8072647466245113779
+    second: mcLightAtkGround_15
+  - first:
+      213: -7326428615779966489
+    second: mcLightAtkGround_16
+  - first:
+      213: -299803143905247142
+    second: mcLightAtkGround_17
+  - first:
+      213: 4023174875743397781
+    second: mcLightAtkGround_18
+  - first:
+      213: -525517457498964893
+    second: mcLightAtkGround_19
+  - first:
+      213: -5550708610001898765
+    second: mcLightAtkGround_20
+  - first:
+      213: 4856686035989759951
+    second: mcLightAtkGround_21
+  - first:
+      213: 1730626534555626868
+    second: mcLightAtkGround_22
+  - first:
+      213: 4442020873613596160
+    second: mcLightAtkGround_23
+  - first:
+      213: 6097533205467345639
+    second: mcLightAtkGround_24
+  - first:
+      213: -6573197559826823519
+    second: mcLightAtkGround_25
+  - first:
+      213: 2050571130993989086
+    second: mcLightAtkGround_26
+  - first:
+      213: -5645904066583371987
+    second: mcLightAtkGround_27
+  - first:
+      213: 5678016862150752879
+    second: mcLightAtkGround_28
+  - first:
+      213: -5776459687995533155
+    second: mcLightAtkGround_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mcLightAtkGround_0
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 40
+        width: 34
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8deb68fd6527ce1e0800000000000000
+      internalID: -2167231603229147432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 40
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43e27123329d95660800000000000000
+      internalID: 7375164609983360564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_2
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 38
+        width: 35
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a715dac5fa2d96ff0800000000000000
+      internalID: -42271070867336838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_3
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 36
+        width: 37
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 911e1579abed82bf0800000000000000
+      internalID: -348784078137204455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_4
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 38
+        width: 35
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a92a024ab10a55840800000000000000
+      internalID: 5212248184329380506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_5
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 36
+        width: 47
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 048f5e0d99e0b5d20800000000000000
+      internalID: 3268222008384944192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_6
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 29
+        width: 46
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f462020d6f5b8e9f0800000000000000
+      internalID: -438900892010273201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_7
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 27
+        width: 46
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca3d147c3c3d352b0800000000000000
+      internalID: -5596897074076331092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_8
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 28
+        width: 52
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e70e844f5a2fc90800000000000000
+      internalID: -7137459990815539601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_9
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 27
+        width: 53
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ba7605974c40680800000000000000
+      internalID: -8789684547401307242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_10
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 29
+        width: 53
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d174e350b0bc3e60800000000000000
+      internalID: 7943418114142925264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_11
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 40
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e4791d2e02bfa30800000000000000
+      internalID: 4250026831905246812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_12
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 40
+        width: 39
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47a1529f6da3e12b0800000000000000
+      internalID: -5611983390679688588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_13
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 51
+        width: 45
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 714566c070100d410800000000000000
+      internalID: 1499699805698806807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_14
+      rect:
+        serializedVersion: 2
+        x: 1821
+        y: 67
+        width: 45
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f81ca23b68fccf590800000000000000
+      internalID: -7639002690488712817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_15
+      rect:
+        serializedVersion: 2
+        x: 1949
+        y: 67
+        width: 45
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b74f7e891ec70070800000000000000
+      internalID: 8072647466245113779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_16
+      rect:
+        serializedVersion: 2
+        x: 2070
+        y: 42
+        width: 90
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1ad24bdfb435a90800000000000000
+      internalID: -7326428615779966489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_17
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 36
+        width: 78
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a508bf801a2e6dbf0800000000000000
+      internalID: -299803143905247142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_18
+      rect:
+        serializedVersion: 2
+        x: 2344
+        y: 36
+        width: 70
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59726f9db3035d730800000000000000
+      internalID: 4023174875743397781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_19
+      rect:
+        serializedVersion: 2
+        x: 2472
+        y: 36
+        width: 61
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36cf18e18acf4b8f0800000000000000
+      internalID: -525517457498964893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_20
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 36
+        width: 59
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f272299debe7f2b0800000000000000
+      internalID: -5550708610001898765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_21
+      rect:
+        serializedVersion: 2
+        x: 2728
+        y: 36
+        width: 59
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc705c8c73a666340800000000000000
+      internalID: 4856686035989759951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_22
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 36
+        width: 59
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47dad07f9ab640810800000000000000
+      internalID: 1730626534555626868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_23
+      rect:
+        serializedVersion: 2
+        x: 2984
+        y: 36
+        width: 59
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 006db90237a35ad30800000000000000
+      internalID: 4442020873613596160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_24
+      rect:
+        serializedVersion: 2
+        x: 3112
+        y: 36
+        width: 59
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e2b70ee42ace9450800000000000000
+      internalID: 6097533205467345639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_25
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 36
+        width: 59
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a6ce0845af47c4a0800000000000000
+      internalID: -6573197559826823519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_26
+      rect:
+        serializedVersion: 2
+        x: 3368
+        y: 36
+        width: 59
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed551994497157c10800000000000000
+      internalID: 2050571130993989086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_27
+      rect:
+        serializedVersion: 2
+        x: 3491
+        y: 42
+        width: 39
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2f5d5b2a28b5a1b0800000000000000
+      internalID: -5645904066583371987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_28
+      rect:
+        serializedVersion: 2
+        x: 3617
+        y: 40
+        width: 32
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a7c21b04e5cce40800000000000000
+      internalID: 5678016862150752879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mcLightAtkGround_29
+      rect:
+        serializedVersion: 2
+        x: 3745
+        y: 40
+        width: 34
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9899adc484e5dfa0800000000000000
+      internalID: -5776459687995533155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mcLightAtkGround_0: -2167231603229147432
+      mcLightAtkGround_1: 7375164609983360564
+      mcLightAtkGround_10: 7943418114142925264
+      mcLightAtkGround_11: 4250026831905246812
+      mcLightAtkGround_12: -5611983390679688588
+      mcLightAtkGround_13: 1499699805698806807
+      mcLightAtkGround_14: -7639002690488712817
+      mcLightAtkGround_15: 8072647466245113779
+      mcLightAtkGround_16: -7326428615779966489
+      mcLightAtkGround_17: -299803143905247142
+      mcLightAtkGround_18: 4023174875743397781
+      mcLightAtkGround_19: -525517457498964893
+      mcLightAtkGround_2: -42271070867336838
+      mcLightAtkGround_20: -5550708610001898765
+      mcLightAtkGround_21: 4856686035989759951
+      mcLightAtkGround_22: 1730626534555626868
+      mcLightAtkGround_23: 4442020873613596160
+      mcLightAtkGround_24: 6097533205467345639
+      mcLightAtkGround_25: -6573197559826823519
+      mcLightAtkGround_26: 2050571130993989086
+      mcLightAtkGround_27: -5645904066583371987
+      mcLightAtkGround_28: 5678016862150752879
+      mcLightAtkGround_29: -5776459687995533155
+      mcLightAtkGround_3: -348784078137204455
+      mcLightAtkGround_4: 5212248184329380506
+      mcLightAtkGround_5: 3268222008384944192
+      mcLightAtkGround_6: -438900892010273201
+      mcLightAtkGround_7: -5596897074076331092
+      mcLightAtkGround_8: -7137459990815539601
+      mcLightAtkGround_9: -8789684547401307242
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

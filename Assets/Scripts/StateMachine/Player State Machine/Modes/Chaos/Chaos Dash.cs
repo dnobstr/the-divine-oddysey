@@ -12,21 +12,24 @@ public class ChaosDash : MonoBehaviour
     public void init(PlayerController player)
     {
         this.player = player;
-        this.trailSegmentPrefab = player.stats.chaos.trailSegmentPrefab;
+        this.trailSegmentPrefab = player.stats.chaos.ignition.trailSegmentPrefab;
 
-        Destroy(gameObject, player.stats.chaos.dash.duration + player.stats.chaos.trailLifetime);
+        Destroy(gameObject, player.stats.chaos.dash.duration + player.stats.chaos.ignition.trailLifetime);
     }
 
     public IEnumerator execute()
     {
         float elapsed = 0f;
+        float dashEndTime = Time.time + player.stats.normal.dash.duration;
 
-        while (player.isDashing)
+        player.rb.AddForceX(player.stats.chaos.dash.speed * player.direction, ForceMode2D.Impulse);
+
+        while (Time.time < dashEndTime)
         {
             player.rb.gravityScale = 0;
             spawnTrailSegment();
-            elapsed += player.stats.chaos.trailTickRate;
-            yield return new WaitForSeconds(player.stats.chaos.trailTickRate);
+            elapsed += player.stats.chaos.ignition.trailTickRate;
+            yield return new WaitForSeconds(player.stats.chaos.ignition.trailTickRate);
         }
 
         player.stateMeter.AddChaos(player.stats.chaos.dash.meterGain);

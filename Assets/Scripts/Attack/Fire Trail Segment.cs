@@ -15,9 +15,9 @@ public class FireTrailSegment : MonoBehaviour
     public void Init(PlayerController player, bool blastProc)
     {
         this.player = player;
-        dps = player.stats.chaos.attack.damage * player.stats.chaos.trailDOTMultiplier;
+        dps = player.stats.chaos.attack.damage * player.stats.chaos.ignition.trailDOTMultiplier;
         isBlastProc = blastProc;
-        Destroy(gameObject, player.stats.chaos.trailLifetime);
+        Destroy(gameObject, player.stats.chaos.ignition.trailLifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
