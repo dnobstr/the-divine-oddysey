@@ -5,11 +5,11 @@ public abstract class BaseState<EState> where EState : Enum
 {
     public BaseState(EState key)
     {
-        Statekey = key;
+        StateKey = key;
     }
-    
-    public EState Statekey { get; private set; }
-    
+
+    public EState StateKey { get; private set; }
+
     public abstract void EnterState();
     public abstract void ExitState();
     public abstract void UpdateState();

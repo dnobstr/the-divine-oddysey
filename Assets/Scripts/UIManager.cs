@@ -19,10 +19,10 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public SceneFader sceneFader;
+    //public SceneFader sceneFader;
 
     private void Start()
     {
-        sceneFader = GetComponentInChildren<SceneFader>();
+        //sceneFader = GetComponentInChildren<SceneFader>();
     }
 }
