@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 517128672fe101044a475cda31d1353d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8819250887136550518
+    second: whiteLadyIdle_0
+  - first:
+      213: 4631902269095816457
+    second: whiteLadyIdle_1
+  - first:
+      213: 4894263091350886784
+    second: whiteLadyIdle_2
+  - first:
+      213: 6953489823938219720
+    second: whiteLadyIdle_3
+  - first:
+      213: 2055602748522148640
+    second: whiteLadyIdle_4
+  - first:
+      213: -8827674989609913381
+    second: whiteLadyIdle_5
+  - first:
+      213: -5990027061907214847
+    second: whiteLadyIdle_6
+  - first:
+      213: -61508335006714173
+    second: whiteLadyIdle_7
+  - first:
+      213: 6526965181165836018
+    second: whiteLadyIdle_8
+  - first:
+      213: -8952559343818432913
+    second: whiteLadyIdle_9
+  - first:
+      213: 7727341689214445482
+    second: whiteLadyIdle_10
+  - first:
+      213: 3633067223728081499
+    second: whiteLadyIdle_11
+  - first:
+      213: -334767584290459327
+    second: whiteLadyIdle_12
+  - first:
+      213: -8186322621326084474
+    second: whiteLadyIdle_13
+  - first:
+      213: -901718392187890595
+    second: whiteLadyIdle_14
+  - first:
+      213: -3971452414648014952
+    second: whiteLadyIdle_15
+  - first:
+      213: 310919574765557620
+    second: whiteLadyIdle_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: whiteLadyIdle_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67e92d894f5446a70800000000000000
+      internalID: 8819250887136550518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_1
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90d28c7a292d74040800000000000000
+      internalID: 4631902269095816457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0895645c95aebe340800000000000000
+      internalID: 4894263091350886784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_3
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce81295722cf7060800000000000000
+      internalID: 6953489823938219720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_4
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 023baf80fc7f68c10800000000000000
+      internalID: 2055602748522148640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_5
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd373b33e5ccd7580800000000000000
+      internalID: -8827674989609913381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_6
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10e2b0caf162fdca0800000000000000
+      internalID: -5990027061907214847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_7
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c6f235ce7a752ff0800000000000000
+      internalID: -61508335006714173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_8
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 3
+        width: 37
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f69bbc3040749a50800000000000000
+      internalID: 6526965181165836018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_9
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e1911a5be12c380800000000000000
+      internalID: -8952559343818432913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_10
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa7a1bb33580d3b60800000000000000
+      internalID: 7727341689214445482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_11
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5a4d63246f3b6230800000000000000
+      internalID: 3633067223728081499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_12
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1413d00e7aaaa5bf0800000000000000
+      internalID: -334767584290459327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_13
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6863d1be2f6546e80800000000000000
+      internalID: -8186322621326084474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_14
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54543a56e37c73f0800000000000000
+      internalID: -901718392187890595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_15
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 897a98e021192e8c0800000000000000
+      internalID: -3971452414648014952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyIdle_16
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 3
+        width: 37
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477dd97b4bb905400800000000000000
+      internalID: 310919574765557620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      whiteLadyIdle_0: 8819250887136550518
+      whiteLadyIdle_1: 4631902269095816457
+      whiteLadyIdle_10: 7727341689214445482
+      whiteLadyIdle_11: 3633067223728081499
+      whiteLadyIdle_12: -334767584290459327
+      whiteLadyIdle_13: -8186322621326084474
+      whiteLadyIdle_14: -901718392187890595
+      whiteLadyIdle_15: -3971452414648014952
+      whiteLadyIdle_16: 310919574765557620
+      whiteLadyIdle_2: 4894263091350886784
+      whiteLadyIdle_3: 6953489823938219720
+      whiteLadyIdle_4: 2055602748522148640
+      whiteLadyIdle_5: -8827674989609913381
+      whiteLadyIdle_6: -5990027061907214847
+      whiteLadyIdle_7: -61508335006714173
+      whiteLadyIdle_8: 6526965181165836018
+      whiteLadyIdle_9: -8952559343818432913
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
