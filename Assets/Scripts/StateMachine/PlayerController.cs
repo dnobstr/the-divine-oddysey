@@ -1,7 +1,12 @@
 using UnityEngine;
 
+using UnityEngine;
+
 public class PlayerController : PlayerStateManager<PlayerStateKey>
 {
+    // Instance for other scripts (e.g. FollowCamera) to reference
+    public static PlayerController Instance { get; private set; }
+
     public Rigidbody2D rb;
     public Animator anim;
     public CapsuleCollider2D cc;
@@ -22,7 +27,7 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     public bool isDashing;
     public bool isFalling;
     public float direction;
-    
+
     [Header("Inputs")]
     public float moveInput;
     public bool jumpPressed;
@@ -30,11 +35,16 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     public bool attackPressed;
     private int _cycleIndex = 0;
 
-    //[Header("Cutscene")]
-    //public bool cutscene;
-
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("PlayerController: duplicate instance detected, destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         cc = GetComponent<CapsuleCollider2D>();
@@ -57,6 +67,12 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
         stateMeter.onDivineChaos.AddListener(() => TransitionToState(PlayerStateKey.DivineChaos));
         stateMeter.onDivineChaosBroken.AddListener(() => TransitionToState(PlayerStateKey.Chaos));
+    }
+
+    void OnDestroy()
+    {
+        // Clear instance reference if this object is destroyed
+        if (Instance == this) Instance = null;
     }
 
     protected override void Update()
@@ -85,6 +101,7 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
 
         base.Update();
     }
+
     private void dash()
     {
         isDashing = true;
@@ -104,7 +121,6 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         rb.linearVelocityX = 0;
     }
 
-
     private void cycleState()
     {
         _cycleIndex = (_cycleIndex + 1) % 3;
@@ -118,6 +134,7 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         handleFlip(moveInput);
         anim.SetBool("isMoving", true);
     }
+
     private void falling()
     {
         if (rb.linearVelocityY < 0 && !isGrounded)
@@ -155,5 +172,4 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         s.x *= -1;
         transform.localScale = s;
     }
-
 }
