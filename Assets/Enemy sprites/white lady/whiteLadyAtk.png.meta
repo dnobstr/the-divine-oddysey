@@ -1,0 +1,676 @@
+fileFormatVersion: 2
+guid: e442230aea07a1743b9d23b621e1f760
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5128962038755601720
+    second: whiteLadyAtk_0
+  - first:
+      213: 1541290779637187625
+    second: whiteLadyAtk_1
+  - first:
+      213: -9106411518577939859
+    second: whiteLadyAtk_2
+  - first:
+      213: -7645156697755489187
+    second: whiteLadyAtk_3
+  - first:
+      213: 6210527766334224611
+    second: whiteLadyAtk_4
+  - first:
+      213: -4626760913833360391
+    second: whiteLadyAtk_5
+  - first:
+      213: 2198641820590905747
+    second: whiteLadyAtk_6
+  - first:
+      213: 7677801987073226706
+    second: whiteLadyAtk_7
+  - first:
+      213: -5683588864593762404
+    second: whiteLadyAtk_8
+  - first:
+      213: -4838349124834924286
+    second: whiteLadyAtk_9
+  - first:
+      213: 2564051914540143339
+    second: whiteLadyAtk_10
+  - first:
+      213: -6348794901779928847
+    second: whiteLadyAtk_11
+  - first:
+      213: -2552818214755378187
+    second: whiteLadyAtk_12
+  - first:
+      213: -3898062369135818417
+    second: whiteLadyAtk_13
+  - first:
+      213: 1003288606222951535
+    second: whiteLadyAtk_14
+  - first:
+      213: -87997261534744034
+    second: whiteLadyAtk_15
+  - first:
+      213: -2335021351268529916
+    second: whiteLadyAtk_16
+  - first:
+      213: -7190494557953251151
+    second: whiteLadyAtk_17
+  - first:
+      213: 8230510053191122017
+    second: whiteLadyAtk_18
+  - first:
+      213: -8226026849725145647
+    second: whiteLadyAtk_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: whiteLadyAtk_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c2528d333442d8b0800000000000000
+      internalID: -5128962038755601720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_1
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 3
+        width: 39
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9240cd74cc3c36510800000000000000
+      internalID: 1541290779637187625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 3
+        width: 38
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6ae2a0c8f68f9180800000000000000
+      internalID: -9106411518577939859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ce51a3d72f6e590800000000000000
+      internalID: -7645156697755489187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e83d04491a303650800000000000000
+      internalID: 6210527766334224611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f30d4666717acfb0800000000000000
+      internalID: -4626760913833360391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39993a04615238e10800000000000000
+      internalID: 2198641820590905747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_7
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d7b94f7a380d8a60800000000000000
+      internalID: 7677801987073226706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_8
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c97e5846a06df11b0800000000000000
+      internalID: -5683588864593762404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_9
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20964ea0b1bbadcb0800000000000000
+      internalID: -4838349124834924286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_10
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be253df91a7559320800000000000000
+      internalID: 2564051914540143339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_11
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f8a8979cac84e7a0800000000000000
+      internalID: -6348794901779928847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_12
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fbdb5deb51929cd0800000000000000
+      internalID: -2552818214755378187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_13
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4987579dec47e9c0800000000000000
+      internalID: -3898062369135818417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_14
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f64ad15fba56ced00800000000000000
+      internalID: 1003288606222951535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_15
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 3
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e12b305f4fe57cef0800000000000000
+      internalID: -87997261534744034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_16
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 409cfa6d376589fd0800000000000000
+      internalID: -2335021351268529916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_17
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 3
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b821d1eb4b363c90800000000000000
+      internalID: -7190494557953251151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_18
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 3
+        width: 39
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16cfcb84945a83270800000000000000
+      internalID: 8230510053191122017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteLadyAtk_19
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 3
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dd9e4dd92847dd80800000000000000
+      internalID: -8226026849725145647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      whiteLadyAtk_0: -5128962038755601720
+      whiteLadyAtk_1: 1541290779637187625
+      whiteLadyAtk_10: 2564051914540143339
+      whiteLadyAtk_11: -6348794901779928847
+      whiteLadyAtk_12: -2552818214755378187
+      whiteLadyAtk_13: -3898062369135818417
+      whiteLadyAtk_14: 1003288606222951535
+      whiteLadyAtk_15: -87997261534744034
+      whiteLadyAtk_16: -2335021351268529916
+      whiteLadyAtk_17: -7190494557953251151
+      whiteLadyAtk_18: 8230510053191122017
+      whiteLadyAtk_19: -8226026849725145647
+      whiteLadyAtk_2: -9106411518577939859
+      whiteLadyAtk_3: -7645156697755489187
+      whiteLadyAtk_4: 6210527766334224611
+      whiteLadyAtk_5: -4626760913833360391
+      whiteLadyAtk_6: 2198641820590905747
+      whiteLadyAtk_7: 7677801987073226706
+      whiteLadyAtk_8: -5683588864593762404
+      whiteLadyAtk_9: -4838349124834924286
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

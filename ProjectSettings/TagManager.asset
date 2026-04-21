@@ -7,16 +7,17 @@ TagManager:
   - Ground
   - Attack Hitbox
   - Enemy
+  - Invisible
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Invisible
   - 
   - 
   - 
