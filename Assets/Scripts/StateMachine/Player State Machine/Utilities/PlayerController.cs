@@ -8,13 +8,14 @@ public class PlayerController : StateManager<PlayerStateKey>
     // ── Components ──────────────────────────────────────────────────────────
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator   anim;
+    [HideInInspector] public SpriteRenderer sr;
 
     // ── Inspector tunables ──────────────────────────────────────────────────
     [Header("Movement")]
     public float moveSpeed    = 8f;
-    public float jumpForce    = 16f;
-    public float dashSpeed    = 22f;
-    public float dashDuration = 0.18f;
+
+    [Header("Stats")]
+    public PlayerStats stats;
 
     [Header("Meter Reference")]
     public StateMeter stateMeter;
@@ -29,7 +30,8 @@ public class PlayerController : StateManager<PlayerStateKey>
     [HideInInspector] public bool    attackPressed;
     [HideInInspector] public bool    switchMode;
     [HideInInspector] public bool    isGrounded;
-    [HideInInspector] public bool    FacingRight = true;
+    [HideInInspector] public bool    facingRight = true;
+    [HideInInspector] public float   lastDashTime;    
 
     public bool cutscene;
 
@@ -40,6 +42,7 @@ public class PlayerController : StateManager<PlayerStateKey>
         anim = GetComponent<Animator>();
         stateMeter = GetComponent<StateMeter>();
         modeManager = GetComponent<ModeManager>();
+        stats = GetComponent<PlayerStats>();
 
         States[PlayerStateKey.Idle]           = new IdleState(PlayerStateKey.Idle,           this);
         States[PlayerStateKey.Move]           = new MoveState(PlayerStateKey.Move,           this);
@@ -119,13 +122,13 @@ public class PlayerController : StateManager<PlayerStateKey>
     // ── Flip sprite to match movement direction ──────────────────────────────
     public void FlipTowards(float direction)
     {
-        if (direction > 0 && !FacingRight) Flip();
-        else if (direction < 0 && FacingRight) Flip();
+        if (direction > 0 && !facingRight) Flip();
+        else if (direction < 0 && facingRight) Flip();
     }
 
     private void Flip()
     {
-        FacingRight = !FacingRight;
+        facingRight = !facingRight;
         Vector3 s = transform.localScale;
         s.x *= -1;
         transform.localScale = s;

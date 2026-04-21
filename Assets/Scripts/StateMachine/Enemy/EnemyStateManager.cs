@@ -87,6 +87,6 @@ public class EnemyStateManager : StateManager<EnemyState>
     {
         Debug.Log("Dealing contact damage to player.");
         // Your damage logic here, e.g.:
-        player.GetComponent<Health>().TakeDamage(stats.attackDamage);
+        player.GetComponent<Health>().takeDamage(stats.attackDamage);
     }
 }

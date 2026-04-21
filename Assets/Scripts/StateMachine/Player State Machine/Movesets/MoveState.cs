@@ -1,17 +1,23 @@
 using UnityEngine;
+using static UnityEditor.UIElements.ToolbarMenu;
 
 public class MoveState : BaseState<PlayerStateKey>
 {
     private readonly PlayerController player;
+    private MoveVariant variant;
 
     public MoveState(PlayerStateKey key, PlayerController player) : base(key)
     {
         this.player = player;
+        variant = player.getCurrentVariant();
     }
 
     public override void EnterState()
     {
-        player.anim?.SetBool("isMoving", true);
+        if (variant == MoveVariant.DivineChaos || variant == MoveVariant.DivineOrder)
+            player.anim.SetBool($"isMoving - {variant}", true);
+        else
+            player.anim.SetBool($"isMoving - Normal", true);
     }
 
     public override void UpdateState()
@@ -23,7 +29,10 @@ public class MoveState : BaseState<PlayerStateKey>
 
     public override void ExitState()
     {
-        player.anim?.SetBool("isMoving", false);
+        if (variant == MoveVariant.DivineChaos || variant == MoveVariant.DivineOrder)
+            player.anim.SetBool($"isMoving - {variant}", true);
+        else
+            player.anim.SetBool($"isMoving - Normal", true);
     }
 
     public override PlayerStateKey GetNextState()
@@ -31,7 +40,7 @@ public class MoveState : BaseState<PlayerStateKey>
         if (player.dashPressed)                          return PlayerStateKey.Dash;
         if (player.attackPressed)                        return PlayerStateKey.Attack;
         if (player.jumpPressed && player.isGrounded)     return PlayerStateKey.Jump;
-        if (player.rb.linearVelocityY < 0)               return PlayerStateKey.Fall;
+        if (player.rb.linearVelocityY < 0 && !player.isGrounded) return PlayerStateKey.Fall;
         if (Mathf.Abs(player.HorizontalInput) < 0.01f)   return PlayerStateKey.Idle;
 
         return StateKey;

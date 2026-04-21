@@ -1,44 +1,51 @@
 using UnityEngine;
 
 // ─── EnemyDespawnState ────────────────────────────────────────────────────────
-// Terminal state — entered when the player escapes deaggroRange.
-// Halts movement, waits despawnDelay seconds (for fade/VFX), then destroys.
+// Entered when the player escapes deaggroRange.
+// Counts down despawnDelay then destroys — but cancels back to Wander if the
+// player returns within deaggroRange before the timer expires.
 // ─────────────────────────────────────────────────────────────────────────────
 
 public class EnemyDespawnState : BaseState<EnemyState>
 {
-    private readonly EnemyStateManager _ctx;
+    private readonly EnemyStateManager ctx;
 
-    private float _timer;
+    private float timer;
 
     public EnemyDespawnState(EnemyState key, EnemyStateManager ctx) : base(key)
     {
-        _ctx = ctx;
+        this.ctx = ctx;
     }
 
     public override void EnterState()
     {
-        _timer = _ctx.stats.despawnDelay;
-        _ctx.SetXVelocity(0f);
+        timer = ctx.stats.despawnDelay;
+        ctx.SetXVelocity(0f);
 
         // ── Trigger your despawn VFX / animation here ─────────────────────────
-        // e.g. GetComponent<Animator>().SetTrigger("Despawn");
-        Debug.Log($"[{_ctx.name}] despawning in {_ctx.stats.despawnDelay}s.");
+        // e.g. ctx.GetComponent<Animator>().SetTrigger("Despawn");
+        Debug.Log($"[{ctx.name}] despawning in {ctx.stats.despawnDelay}s.");
     }
 
     public override void UpdateState()
     {
-        _timer -= Time.deltaTime;
-        if (_timer <= 0f)
-            Object.Destroy(_ctx.gameObject);
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
+            Object.Destroy(ctx.gameObject);
     }
 
     public override void ExitState() { }
 
-    // Terminal — never transitions out
-    public override EnemyState GetNextState() => EnemyState.Despawn;
+    public override EnemyState GetNextState()
+    {
+        // Player came back within range — cancel despawn and return to Wander
+        if (ctx.HorizontalDistanceToPlayer() < ctx.stats.deaggroRange)
+            return EnemyState.Wander;
+
+        return EnemyState.Despawn;
+    }
 
     public override void OnTriggerEnter2D(Collider2D other) { }
-    public override void OnTriggerStay2D(Collider2D other)  { }
-    public override void OnTriggerExit2D(Collider2D other)  { }
+    public override void OnTriggerStay2D(Collider2D other) { }
+    public override void OnTriggerExit2D(Collider2D other) { }
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8806719656319906621}
   - component: {fileID: 3812814445305459268}
   - component: {fileID: 1362116826836513538}
+  - component: {fileID: 878984707763537281}
   m_Layer: 7
   m_Name: Duwende
   m_TagString: Enemy
@@ -223,6 +224,8 @@ MonoBehaviour:
   attackDamage: 10
   attackWindup: 0.2
   attackDuration: 0.3
+  contactCooldown: 1
+  lastDamageTime: 0
   wanderSpeed: 2
   wanderRadius: 4
   wanderInterval: 3
@@ -274,3 +277,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.13592619, y: 0.0011869967}
   m_EdgeRadius: 0
+--- !u!114 &878984707763537281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755016404071685548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8678440aa2821bf4ea07b3191b676301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  currentHealth: 0
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []

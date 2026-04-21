@@ -40,26 +40,11 @@ public class ProjectileHitbox : BaseHitbox
     }
     protected override void DealDamage(Transform target)
     {
-        Health targetHealth = target.GetComponent<Health>();
+        Health hp = target.GetComponent<Health>();
 
-        if (targetHealth != null)
+        if (hp != null)
         {
-            targetHealth.StartCoroutine(ApplyDOT(targetHealth, 2f, 4));
-        }
-    }
-
-    private System.Collections.IEnumerator ApplyDOT(Health health, float duration, int totalTicks)
-    {
-        float damagePerTick = damage / totalTicks; 
-        float timeBetweenTicks = duration / totalTicks;
-
-        for (int i = 0; i < totalTicks; i++)
-        {
-            if (health == null) yield break; 
-
-            health.TakeDamage(damagePerTick);
-
-            yield return new WaitForSeconds(timeBetweenTicks);
+            hp.applyDOT(damage, 2f, 4);
         }
     }
 }

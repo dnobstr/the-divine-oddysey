@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.UIElements.ToolbarMenu;
 
 public class IdleState : BaseState<PlayerStateKey>
 {
@@ -15,7 +16,12 @@ public class IdleState : BaseState<PlayerStateKey>
         var v = player.rb.linearVelocity;
         player.rb.linearVelocity = new Vector2(0f, v.y);
 
-        player.anim?.SetBool("isMoving", false);
+        MoveVariant variant = player.getCurrentVariant();
+
+        if (variant == MoveVariant.DivineChaos || variant == MoveVariant.DivineOrder)
+            player.anim.SetBool($"isMoving - {variant}", false);
+        else
+            player.anim.SetBool($"isMoving - Normal", false);
     }
 
     public override void UpdateState() { /* nothing – just stand there */ }
@@ -28,7 +34,7 @@ public class IdleState : BaseState<PlayerStateKey>
         if (player.dashPressed)                          return PlayerStateKey.Dash;
         if (player.attackPressed)                        return PlayerStateKey.Attack;
         if (player.jumpPressed && player.isGrounded)     return PlayerStateKey.Jump;
-        if (player.rb.linearVelocityY < 0)               return PlayerStateKey.Fall;
+        if (player.rb.linearVelocityY < 0 && !player.isGrounded) return PlayerStateKey.Fall;
         if (Mathf.Abs(player.HorizontalInput) > 0.01f)   return PlayerStateKey.Move;
 
 

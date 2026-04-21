@@ -1,22 +1,27 @@
 using UnityEngine;
 
 /// <summary>
-/// Entered whenever the player is airborne but did NOT initiate a jump —
-/// e.g. after a dash, after an air attack, or walking off a ledge.
+/// Entered whenever the player is airborne but did NOT initiate a orderJump —
+/// e.g. after a orderDash, after an air chaosAttack, or walking off a ledge.
 /// Provides air-steering without applying any upward force.
 /// </summary>
 public class FallState : BaseState<PlayerStateKey>
 {
     private readonly PlayerController player;
+    private MoveVariant variant;
 
     public FallState(PlayerStateKey key, PlayerController player) : base(key)
     {
         this.player = player;
+        variant = player.getCurrentVariant();
     }
 
     public override void EnterState()
     {
-        player.anim?.SetBool("isFalling", true);
+        if (variant == MoveVariant.DivineChaos || variant == MoveVariant.DivineOrder)
+            player.anim?.SetBool($"isFalling - {variant}", true);
+        else
+            player.anim?.SetBool($"isFalling - Normal", true);
     }
 
     public override void UpdateState()
@@ -29,12 +34,16 @@ public class FallState : BaseState<PlayerStateKey>
 
     public override void ExitState() 
     {
-        player.anim?.SetBool("isFalling", false);
+        if (variant == MoveVariant.DivineChaos || variant == MoveVariant.DivineOrder)
+            player.anim?.SetBool($"isFalling - {variant}", false);
+        else
+            player.anim?.SetBool($"isFalling - Normal", false);
     }
 
     public override PlayerStateKey GetNextState()
     {
-        if (player.attackPressed)  return PlayerStateKey.AttackAirborne;
+        if (player.attackPressed && !player.isGrounded)  return PlayerStateKey.AttackAirborne;
+        if (player.attackPressed && player.isGrounded)  return PlayerStateKey.Attack;
         if (player.dashPressed)    return PlayerStateKey.Dash;
 
         if (player.isGrounded && player.rb.linearVelocity.y <= 0f)

@@ -24,7 +24,7 @@ public class StateMeter : MonoBehaviour
 
     public float Normalized => currentValue / maxValue; // -1 to 1
 
-    // --- Called by Order actions (attack, etc) ---
+    // --- Called by Order actions (chaosAttack, etc) ---
     public void addOrder(float amount)
     {
         if (isDivineChaos)
@@ -39,7 +39,7 @@ public class StateMeter : MonoBehaviour
         checkThresholds();
     }
 
-    // --- Called by Chaos actions (attack, jump, dash) ---
+    // --- Called by Chaos actions (chaosAttack, orderJump, orderDash) ---
     public void addChaos(float amount)
     {
         if (isDivineOrder)

@@ -1,30 +1,22 @@
+using System.Collections;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
 /// Ground Attack variants:
 ///   Normal      – single hit, no meter effect
 ///   Order       – slow powerful swing, +Order on hit
-///   Chaos       – fast flurry (3 quick hits), +Chaos on each hit
-///   DivineOrder – wide holy AoE burst
-///   DivineChaos – rapid random multi-hit explosion
+///   Chaos       – fast swing, +Chaos on hit
+///   DivineOrder – long windup, invincible while casting, wide holy burst
+///   DivineChaos – one continuous animation, spawns 2 hitboxes timed to each swing
 /// </summary>
 public class AttackState : BaseState<PlayerStateKey>
 {
     private readonly PlayerController player;
     private MoveVariant variant;
 
-    private float attackTimer;
-    private bool  attackDone;
-
-    // Attack durations per variant (seconds – match to your animation lengths)
-    private static readonly float[] Durations =
-    {
-        0.35f, // Normal
-        0.55f, // Order
-        0.45f, // Chaos
-        0.65f, // DivineOrder
-        0.50f  // DivineChaos
-    };
+    private bool attackDone;
+    private Coroutine attackCoroutine;
 
     public AttackState(PlayerStateKey key, PlayerController player) : base(key)
     {
@@ -33,71 +25,149 @@ public class AttackState : BaseState<PlayerStateKey>
 
     public override void EnterState()
     {
-        variant     = player.getCurrentVariant();
-        attackDone  = false;
-        attackTimer = Durations[(int)variant];
+        variant = player.getCurrentVariant();
+        attackDone = false;
 
-        // Lock horizontal movement during the attack swing
-        player.rb.linearVelocity = new Vector2(0f, player.rb.linearVelocity.y);
+        player.rb.linearVelocity = Vector2.zero;
 
-        player.anim?.SetTrigger($"attack");
-        //player.anim?.SetTrigger($"Attack_{variant}");
-        PerformAttackLogic();
+        if (variant == MoveVariant.DivineChaos || variant == MoveVariant.DivineOrder)
+            player.anim?.SetTrigger($"attack - {variant}");
+        else
+            player.anim?.SetTrigger($"attack - Normal");
+
+        attackCoroutine = player.StartCoroutine(AttackSequence());
     }
 
-    private void PerformAttackLogic()
+    // ── Main sequence ────────────────────────────────────────────────────────────
+
+    private IEnumerator AttackSequence()
     {
-        // TODO: replace with your hitbox / hit-detection calls.
-        // The switch below shows where variant-specific behaviour lives.
         switch (variant)
         {
             case MoveVariant.Normal:
-                player.stateMeter?.addOrder(0f); // neutral – no meter change on normal attack
+                yield return SingleHit(
+                    player.stats.normal.attack,
+                    player.stats.normal.attack.attackHb,
+                    player.stats.normal.attack.hbDuration);
                 break;
 
             case MoveVariant.Order:
-                player.stateMeter?.addOrder(10f);
+                yield return SingleHit(
+                    player.stats.order.orderAttack,
+                    player.stats.order.orderAttack.attackHb,
+                    player.stats.order.orderAttack.hbDuration);
+                player.stateMeter?.addOrder(player.stats.order.orderAttack.meterGain);
                 break;
 
             case MoveVariant.Chaos:
-                player.stateMeter?.addChaos(10f);
+                yield return SingleHit(
+                    player.stats.chaos.chaosAttack,
+                    player.stats.chaos.chaosAttack.attackHb,
+                    player.stats.chaos.chaosAttack.hbDuration);
+                player.stateMeter?.addChaos(player.stats.chaos.chaosAttack.meterGain);
                 break;
 
             case MoveVariant.DivineOrder:
+                yield return DivineOrderAttack();
                 break;
 
             case MoveVariant.DivineChaos:
+                yield return DivineChaosAttack();
                 break;
         }
-        Debug.Log($"Attack: {variant}");
+
+        attackDone = true;
     }
 
-    public override void UpdateState()
+    // ── Shared single-hit flow: windup → spawn hb → resolve ─────────────────────
+
+    private IEnumerator SingleHit(AttackStats stats, GameObject hbPrefab, float duration)
     {
-        attackTimer -= Time.deltaTime;
-        if (attackTimer <= 0f)
-            attackDone = true;
+        yield return new WaitForSeconds(stats.windupDuration);
+        SpawnHitbox(hbPrefab, stats.damage, stats.hbDuration);
+        yield return new WaitForSeconds(stats.hbDuration);
+        yield return new WaitForSeconds(stats.resolveDuration);
     }
 
-    public override void ExitState() { }
+    // ── DivineOrder: long windup with full invincibility, then burst ─────────────
+
+    private IEnumerator DivineOrderAttack()
+    {
+        AttackStats stats = player.stats.divineOrder.divineAttack;
+
+        player.GetComponent<Health>().isVulnerable = false;
+        yield return new WaitForSeconds(stats.windupDuration);
+        player.GetComponent<Health>().isVulnerable = true;
+
+        SpawnHitbox(stats.attackHb, stats.damage, stats.hbDuration);
+        yield return new WaitForSeconds(stats.hbDuration);
+        yield return new WaitForSeconds(stats.resolveDuration);
+    }
+
+    // ── DivineChaos: two hitboxes timed to the two swings in the animation ───────
+
+    private IEnumerator DivineChaosAttack()
+    {
+        AttackStats stats = player.stats.divineChaos.divineAttack;
+
+        yield return new WaitForSeconds(stats.windupDuration);
+        SpawnHitbox(stats.attackHb, stats.damage, stats.hbDuration);
+
+        yield return new WaitForSeconds(stats.hbDuration);
+        SpawnHitbox(stats.attackHb, stats.damage, stats.hbDuration);
+
+        yield return new WaitForSeconds(stats.resolveDuration);
+        player.stateMeter?.addChaos(stats.meterGain);
+    }
+
+    // ── Helpers ──────────────────────────────────────────────────────────────────
+
+    private void SpawnHitbox(GameObject prefab, float damage, float duration)
+    {
+        GameObject hb = GameObject.Instantiate(prefab, player.transform.position, player.transform.rotation);
+
+        var hitbox = hb.GetComponent<BaseHitbox>();
+        if (hitbox != null)
+        {
+            hitbox.damage = damage;
+            hitbox.lifetime = duration; // This is the field in Base Hitbox.cs
+        }
+    }
+
+    // ── Base overrides ───────────────────────────────────────────────────────────
+
+    public override void UpdateState() { }
+
+    public override void ExitState()
+    {
+        // Stop the coroutine if the state is interrupted mid-sequence —
+        // prevents a stale coroutine spawning a hitbox after we've left the state
+        if (attackCoroutine != null)
+        {
+            player.StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+        }
+
+        // Safety: restore vulnerability if interrupted during DivineOrder windup
+        player.GetComponent<Health>().isVulnerable = true;
+    }
 
     public override PlayerStateKey GetNextState()
     {
         if (!attackDone) return StateKey;
 
-        // Allow chaining: if attack is still pressed queue another
         if (player.attackPressed) return PlayerStateKey.Attack;
-        if (player.jumpPressed)   return PlayerStateKey.Jump;
-        if (player.dashPressed)   return PlayerStateKey.Dash;
+        if (player.jumpPressed) return PlayerStateKey.Jump;
+        if (player.dashPressed) return PlayerStateKey.Dash;
 
-        return player.isGrounded
-            ? PlayerStateKey.Fall 
+        return !player.isGrounded
+            ? PlayerStateKey.Fall
             : Mathf.Abs(player.HorizontalInput) > 0.01f
             ? PlayerStateKey.Move
             : PlayerStateKey.Idle;
     }
 
     public override void OnTriggerEnter2D(Collider2D other) { }
-    public override void OnTriggerStay2D(Collider2D other)  { }
-    public override void OnTriggerExit2D(Collider2D other)  { }
+    public override void OnTriggerStay2D(Collider2D other) { }
+    public override void OnTriggerExit2D(Collider2D other) { }
 }

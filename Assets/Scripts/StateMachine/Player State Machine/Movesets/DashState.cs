@@ -1,28 +1,12 @@
-using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Dash variants:
-///   Normal      – straight horizontal dash
-///   Order       – slower but leaves a brief shield window
-///   Chaos       – faster, passes through enemies (set layer ignore in EnterState)
-///   DivineOrder – dash + brief time-slow effect (Time.timeScale)
-///   DivineChaos – multi-dash: fires 3 short dashes in rapid succession
-/// </summary>
 public class DashState : BaseState<PlayerStateKey>
 {
     private readonly PlayerController player;
     private MoveVariant variant;
 
-    private float _dashTimer;
-    private bool  _dashComplete;
-    private int   _divineDashCount;
-
-    // Variant speed multipliers
-    private const float OrderSpeedMult      = 0.7f;
-    private const float ChaosSpeedMult      = 1.5f;
-    private const float DivineOrderTimeSlow = 0.35f;
-    private const int   DivineChaosRepeats  = 3;
+    private float dashTimer;
+    private bool dashComplete;
 
     public DashState(PlayerStateKey key, PlayerController player) : base(key)
     {
@@ -31,62 +15,70 @@ public class DashState : BaseState<PlayerStateKey>
 
     public override void EnterState()
     {
-        variant      = player.getCurrentVariant();
-        _dashTimer    = 0f;
-        _dashComplete = false;
-        _divineDashCount = 0;
+        dashComplete = false;
+        variant = player.getCurrentVariant();
 
-        // Disable gravity during dash so arc doesn't curve
+        player.GetComponent<Health>().isVulnerable = false;
         player.rb.gravityScale = 0f;
         player.rb.linearVelocity = Vector2.zero;
 
-        StartDash();
-        player.anim?.SetTrigger($"dash");
-        //player.anim?.SetTrigger($"Dash_{variant}");
+        player.anim?.SetTrigger("dash");
 
-        // Meter cost
-        if (variant == MoveVariant.Chaos)
-            player.stateMeter?.addChaos(8f);
-        else if (variant == MoveVariant.Order)
-            player.stateMeter?.addOrder(8f);
+        StartDash();
+
+        // ChaosDash handles its own coroutine and cleanup via init()
+        if (variant == MoveVariant.Chaos || variant == MoveVariant.DivineChaos)
+        {
+            player.gameObject.AddComponent<ChaosDash>().init(player, variant);
+        }
     }
 
     private void StartDash()
     {
-        float dir   = player.FacingRight ? 1f : -1f;
-        float speed = player.dashSpeed;
+        float dir = player.facingRight ? 1f : -1f;
+        float speed = player.stats.normal.dash.speed;
+        dashTimer = player.stats.normal.dash.duration;
 
         switch (variant)
         {
-            case MoveVariant.Order:       speed *= OrderSpeedMult;  break;
-            case MoveVariant.Chaos:       speed *= ChaosSpeedMult;  break;
+            case MoveVariant.Order:
+                speed = player.stats.order.orderDash.speed;
+                dashTimer = player.stats.order.orderDash.duration;
+                player.stateMeter.addOrder(8f);
+                break;
+
+            case MoveVariant.Chaos:
+                speed = player.stats.chaos.chaosDash.speed;
+                dashTimer = player.stats.chaos.chaosDash.duration;
+                player.stateMeter.addChaos(8f);
+                break;
+
             case MoveVariant.DivineOrder:
-                Time.timeScale = DivineOrderTimeSlow;
+                dashTimer = player.stats.order.orderDash.duration;
+                Time.timeScale = player.stats.divineOrder.divineDash.divineOrderTimeSlow;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 break;
-            case MoveVariant.DivineChaos: speed *= ChaosSpeedMult;  break;
+
+            case MoveVariant.DivineChaos:
+                speed = player.stats.divineChaos.divineDash.speed;
+                dashTimer = player.stats.divineChaos.divineDash.duration;
+                player.stateMeter.addChaos(8f);
+                break;
         }
 
         player.rb.linearVelocity = new Vector2(dir * speed, 0f);
-        _dashTimer = player.dashDuration;
     }
 
     public override void UpdateState()
     {
-        _dashTimer -= Time.deltaTime;
+        float dt = (variant == MoveVariant.DivineOrder)
+            ? Time.unscaledDeltaTime
+            : Time.deltaTime;
 
-        if (_dashTimer <= 0f)
-        {
-            if (variant == MoveVariant.DivineChaos && _divineDashCount < DivineChaosRepeats - 1)
-            {
-                _divineDashCount++;
-                StartDash();
-            }
-            else
-            {
-                _dashComplete = true;
-            }
-        }
+        dashTimer -= dt;
+
+        if (dashTimer <= 0f)
+            dashComplete = true;
     }
 
     public override void ExitState()
@@ -94,26 +86,27 @@ public class DashState : BaseState<PlayerStateKey>
         player.rb.gravityScale = 1f;
         player.rb.linearVelocity = new Vector2(0f, player.rb.linearVelocity.y);
 
-        // Restore time if DivineOrder dash was used
         if (variant == MoveVariant.DivineOrder)
         {
-            Time.timeScale      = 1f;
+            Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
         }
+
+        player.GetComponent<Health>().isVulnerable = true;
     }
 
     public override PlayerStateKey GetNextState()
     {
-        if (!_dashComplete) return StateKey;
+        if (!dashComplete) return StateKey;
 
         return !player.isGrounded
             ? PlayerStateKey.Fall
-            : (Mathf.Abs(player.HorizontalInput) > 0.01f 
-            ? PlayerStateKey.Move 
-            : PlayerStateKey.Idle);
+            : (Mathf.Abs(player.HorizontalInput) > 0.01f
+                ? PlayerStateKey.Move
+                : PlayerStateKey.Idle);
     }
 
     public override void OnTriggerEnter2D(Collider2D other) { }
-    public override void OnTriggerStay2D(Collider2D other)  { }
-    public override void OnTriggerExit2D(Collider2D other)  { }
+    public override void OnTriggerStay2D(Collider2D other) { }
+    public override void OnTriggerExit2D(Collider2D other) { }
 }

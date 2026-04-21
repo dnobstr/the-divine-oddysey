@@ -2,9 +2,9 @@ using UnityEngine;
 
 /// <summary>
 /// Jump variants:
-///   Normal      – standard jump force
+///   Normal      – standard orderJump force
 ///   Order       – extra height, slow horizontal drift
-///   Chaos       – lower jump, high horizontal burst
+///   Chaos       – lower orderJump, high horizontal burst
 ///   DivineOrder – floaty, gravity-reduced arc
 ///   DivineChaos – double-height explosive launch
 /// </summary>
@@ -34,24 +34,27 @@ public class JumpState : BaseState<PlayerStateKey>
         originalGravity = player.rb.gravityScale;
                 
         ApplyJump();
-        player.anim?.SetTrigger($"jump");
-        //player.anim?.SetTrigger($"Jump_{variant}");
+        
+        if (variant == MoveVariant.DivineChaos || variant == MoveVariant.DivineOrder)
+            player.anim?.SetTrigger($"jump - {variant}");
+        else
+            player.anim?.SetTrigger($"jump - Normal");
+
     }
 
     private void ApplyJump()
     {
-        float force = player.jumpForce;
-
+        float force = player.stats.normal.jump.force;
         switch (variant)
         {
             case MoveVariant.Order:
-                force *= OrderHeightMult;
+                force = player.stats.order.orderJump.force;
                 break;
 
             case MoveVariant.Chaos:
-                force *= ChaosHeightMult;
+                force = player.stats.chaos.chaosJump.force;
                 // Horizontal burst
-                float burstDir = player.FacingRight ? 1f : -1f;
+                float burstDir = player.facingRight ? 1f : -1f;
                 player.rb.linearVelocity = new Vector2(burstDir * player.moveSpeed * 1.5f, 0f);
                 break;
 
@@ -95,7 +98,6 @@ public class JumpState : BaseState<PlayerStateKey>
         if (player.dashPressed)    return PlayerStateKey.Dash;
         if (player.rb.linearVelocityY < 0) return PlayerStateKey.Fall;
 
-
         // Return to ground states once landed
         if (player.isGrounded && player.rb.linearVelocity.y <= 0f)
         {
@@ -103,6 +105,8 @@ public class JumpState : BaseState<PlayerStateKey>
                 ? PlayerStateKey.Move
                 : PlayerStateKey.Idle;
         }
+
+        if (!player.isGrounded && player.rb.linearVelocity.y < 0f) return PlayerStateKey.Fall;
 
         return StateKey;
     }

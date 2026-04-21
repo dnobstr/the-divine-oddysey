@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 910449766}
   - component: {fileID: 910449775}
   - component: {fileID: 910449776}
+  - component: {fileID: 910449777}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -631,8 +632,7 @@ MonoBehaviour:
   attackPressed: 0
   switchMode: 0
   isGrounded: 0
-  facingRight: 1
-  lastDashTime: 0
+  FacingRight: 1
   cutscene: 0
 --- !u!61 &910449769
 BoxCollider2D:
@@ -668,7 +668,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.048618823, y: -0.28404528}
+  m_Offset: {x: 0.047144048, y: -0.24092217}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -678,7 +678,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.11076081, y: 0.17344427}
+  m_Size: {x: 0.18449987, y: 0.08719823}
   m_EdgeRadius: 0
 --- !u!70 &910449770
 CapsuleCollider2D:
@@ -852,7 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8678440aa2821bf4ea07b3191b676301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
+  maxHealth: 5000
   currentHealth: 0
   OnDamage:
     m_PersistentCalls:
@@ -876,16 +876,17 @@ MonoBehaviour:
     dash:
       speed: 22
       duration: 0.18
-      meterGain: 0
+      lastDashTime: 0
+      meterGain: 10
     jump:
       force: 8
     attack:
       damage: 10
-      windupDuration: 0.1
-      hbDuration: 0.5
-      resolveDuration: 0.1
-      meterGain: 0
-      attackHb: {fileID: 7785969008310606884, guid: 54170e5ef554f0a4e9b072ed784d9b17, type: 3}
+      windupDuration: 0
+      hbDuration: 5
+      resolveDuration: 0.2
+      meterGain: 20
+      attackHb: {fileID: 0}
     airAttack:
       damage: 10
       windupDuration: 0
@@ -898,6 +899,7 @@ MonoBehaviour:
     orderDash:
       speed: 22
       duration: 0.18
+      lastDashTime: 0
       meterGain: 10
       invisDuration: 2
     orderJump:
@@ -907,11 +909,11 @@ MonoBehaviour:
       gravityScale: 0.3
     orderAttack:
       damage: 10
-      windupDuration: 0.1
-      hbDuration: 0.5
-      resolveDuration: 0.1
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
       meterGain: 20
-      attackHb: {fileID: 7785969008310606884, guid: 54170e5ef554f0a4e9b072ed784d9b17, type: 3}
+      attackHb: {fileID: 0}
     orderAirAttack:
       damage: 10
       windupDuration: 0
@@ -919,28 +921,32 @@ MonoBehaviour:
       resolveDuration: 0
       force: 0
       meterGain: 15
-      jumpAttackhb: {fileID: 7785969008310606884, guid: 54170e5ef554f0a4e9b072ed784d9b17, type: 3}
+      jumpAttackhb: {fileID: 0}
       pulseRadius: 4
       pulseDuration: 1.5
   chaos:
     chaosDash:
       speed: 22
       duration: 0.18
+      lastDashTime: 0
       meterGain: 10
-      trailTickRate: 0.01
+      trailTickRate: 0.25
       trailLifetime: 2
       trailDOTMultiplier: 0.25
-      trailSpawnOffset: -3.5
       trailSegmentPrefab: {fileID: 6932803162986709617, guid: 2ff7a9828446ef545b22b6b49727b88d, type: 3}
     chaosJump:
       force: 8
+      jump:
+        force: 8
+      gravityScale: 0.3
     chaosAttack:
       damage: 10
-      windupDuration: 0.1
-      hbDuration: 0.5
-      resolveDuration: 0.1
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
       meterGain: 20
-      attackHb: {fileID: 7785969008310606884, guid: 54170e5ef554f0a4e9b072ed784d9b17, type: 3}
+      attackHb: {fileID: 0}
+      attackCount: 2
     chaosAirAttack:
       damage: 10
       windupDuration: 0
@@ -948,17 +954,14 @@ MonoBehaviour:
       resolveDuration: 0
       force: 0
       meterGain: 15
-      jumpAttackhb: {fileID: 1001664001136731255, guid: db646b5b3d75fab479e42b44a39403d9, type: 3}
-      pulseRadius: 4
-      pulseDuration: 1.5
-      invincibiltyWindow: 2
+      jumpAttackhb: {fileID: 0}
   divineOrder:
     divineDash:
       speed: 22
       duration: 0.18
+      lastDashTime: 0
       meterGain: 10
       divineOrderTimeSlow: 0.35
-      divineOrderTimeSlowDuration: 2
     divineJump:
       force: 8
       jump:
@@ -966,11 +969,11 @@ MonoBehaviour:
       gravityScale: 0.3
     divineAttack:
       damage: 10
-      windupDuration: 1.25
-      hbDuration: 0.5
-      resolveDuration: 0.1
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
       meterGain: 20
-      attackHb: {fileID: 7785969008310606884, guid: 54170e5ef554f0a4e9b072ed784d9b17, type: 3}
+      attackHb: {fileID: 0}
     divineAirAttack:
       damage: 10
       windupDuration: 0
@@ -985,26 +988,183 @@ MonoBehaviour:
     divineDash:
       speed: 22
       duration: 0.18
+      lastDashTime: 0
       meterGain: 10
       trailTickRate: 0.25
       trailLifetime: 2
       trailDOTMultiplier: 0.25
-      trailSpawnOffset: 0
-      trailSegmentPrefab: {fileID: 6932803162986709617, guid: 2ff7a9828446ef545b22b6b49727b88d, type: 3}
-      threshold: 2
-      radius: 2
-      multiplier: 2
+      trailSegmentPrefab: {fileID: 0}
+      threshold: 0
+      radius: 0
+      multiplier: 0
     divineJump:
       force: 8
       hangGravityScale: 0.1
       hangDuration: 0.4
     divineAttack:
       damage: 10
-      windupDuration: 0.1
-      hbDuration: 0.5
-      resolveDuration: 0.1
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
       meterGain: 20
-      attackHb: {fileID: 7785969008310606884, guid: 54170e5ef554f0a4e9b072ed784d9b17, type: 3}
+      attackHb: {fileID: 0}
+      attackCount: 2
+    divineAirAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      force: 0
+      meterGain: 15
+      jumpAttackhb: {fileID: 0}
+--- !u!114 &910449777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910449765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d28206da246984dbbedee721beee93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  normal:
+    dash:
+      speed: 22
+      duration: 0.18
+      lastDashTime: 0
+      meterGain: 10
+    jump:
+      force: 8
+    attack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      meterGain: 20
+      attackHb: {fileID: 0}
+    airAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      force: 0
+      meterGain: 15
+      jumpAttackhb: {fileID: 0}
+  order:
+    orderDash:
+      speed: 22
+      duration: 0.18
+      lastDashTime: 0
+      meterGain: 10
+      invisDuration: 2
+    orderJump:
+      force: 8
+      jump:
+        force: 8
+      gravityScale: 0.3
+    orderAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      meterGain: 20
+      attackHb: {fileID: 0}
+    orderAirAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      force: 0
+      meterGain: 15
+      jumpAttackhb: {fileID: 0}
+      pulseRadius: 4
+      pulseDuration: 1.5
+  chaos:
+    chaosDash:
+      speed: 22
+      duration: 0.18
+      lastDashTime: 0
+      meterGain: 10
+      trailTickRate: 0.25
+      trailLifetime: 2
+      trailDOTMultiplier: 0.25
+      trailSegmentPrefab: {fileID: 0}
+    chaosJump:
+      force: 8
+      jump:
+        force: 8
+      gravityScale: 0.3
+    chaosAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      meterGain: 20
+      attackHb: {fileID: 0}
+      attackCount: 2
+    chaosAirAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      force: 0
+      meterGain: 15
+      jumpAttackhb: {fileID: 0}
+  divineOrder:
+    divineDash:
+      speed: 22
+      duration: 0.18
+      lastDashTime: 0
+      meterGain: 10
+      divineOrderTimeSlow: 0.35
+    divineJump:
+      force: 8
+      jump:
+        force: 8
+      gravityScale: 0.3
+    divineAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      meterGain: 20
+      attackHb: {fileID: 0}
+    divineAirAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      force: 0
+      meterGain: 15
+      jumpAttackhb: {fileID: 0}
+      pulseRadius: 4
+      pulseDuration: 1.5
+  divineChaos:
+    divineDash:
+      speed: 22
+      duration: 0.18
+      lastDashTime: 0
+      meterGain: 10
+      trailTickRate: 0.25
+      trailLifetime: 2
+      trailDOTMultiplier: 0.25
+      trailSegmentPrefab: {fileID: 0}
+      threshold: 0
+      radius: 0
+      multiplier: 0
+    divineJump:
+      force: 8
+      hangGravityScale: 0.1
+      hangDuration: 0.4
+    divineAttack:
+      damage: 10
+      windupDuration: 0
+      hbDuration: 0
+      resolveDuration: 0
+      meterGain: 20
+      attackHb: {fileID: 0}
       attackCount: 2
     divineAirAttack:
       damage: 10

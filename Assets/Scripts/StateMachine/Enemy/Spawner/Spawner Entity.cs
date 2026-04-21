@@ -27,7 +27,7 @@ public class SpawnerEntity : MonoBehaviour
         float xDist = Mathf.Abs(transform.position.x - player.position.x);
         float yDist = Mathf.Abs(transform.position.y - player.position.y);
 
-        // Check if player is within aggro/attack range
+        // Check if player is within aggro/chaosAttack range
         if (xDist <= stats.attackRange && yDist <= stats.attackHeight)
         {
             HandleSpawning();

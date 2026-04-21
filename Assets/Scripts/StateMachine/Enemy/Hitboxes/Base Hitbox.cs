@@ -29,6 +29,6 @@ public class BaseHitbox : MonoBehaviour
     // This can be overridden if different hitboxes do different things (poison, knockback, etc.)
     protected virtual void DealDamage(Transform target)
     {
-        target.GetComponent<Health>().TakeDamage(damage);
+        target.GetComponent<Health>().takeDamage(damage);
     }
 }
