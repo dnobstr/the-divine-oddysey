@@ -36,9 +36,20 @@ public class PlayerController : StateManager<PlayerStateKey>
 
     public bool cutscene;
 
+    public static PlayerController Instance;
+
+
+    
+
     // ── Awake: build the state dictionary ───────────────────────────────────
     private void Awake()
     {
+        // ensure singleton instance is set so other systems (camera, effects) can find the player
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Debug.LogWarning("Multiple PlayerController instances detected. Keeping the first one.");
+
         rb   = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         stateMeter = GetComponent<StateMeter>();

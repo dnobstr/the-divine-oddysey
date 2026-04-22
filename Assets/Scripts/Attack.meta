@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab/Player/Attack.meta
+guid: fb1a38c483405db4a8c4fc0e3eb4efd6
+========
+guid: 28c5c877d52a8db4889f939d95c292d9
+>>>>>>>> 925a02560aaa3bd7426dc964b4238437998c9f50:Assets/Scripts/Attack.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animation/Tiktik Anim.meta
 guid: b260ad9ac601bde4299aceec8286a0cd
+========
+guid: 898adb260cca35c42ad6b7441628cdb1
+>>>>>>>> 925a02560aaa3bd7426dc964b4238437998c9f50:Assets/Scenes/Timeline.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
