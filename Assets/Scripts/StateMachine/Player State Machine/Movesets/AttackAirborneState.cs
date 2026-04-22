@@ -109,19 +109,31 @@ public class AttackAirborneState : BaseState<PlayerStateKey>
                 break;
 
             case MoveVariant.DivineOrder:
-                yield return AerialHit(
-                    player.stats.divineOrder.divineAirAttack,
+                yield return new WaitForSeconds(player.stats.order.orderAirAttack.windupDuration);
+                yield return WaitUntilGrounded();
+                SpawnRadialEffector(
+                    push: false,
+                    player.stats.divineOrder.divineAirAttack.pulseRadius,
+                    player.stats.divineOrder.divineAirAttack.pulseDuration,
                     player.stats.divineOrder.divineAirAttack.jumpAttackhb,
-                    waitForLanding: false);
-                player.stateMeter?.addOrder(player.stats.divineOrder.divineAirAttack.meterGain);
+                    player.stats.divineOrder.divineAirAttack.force);
+                invulnCoroutine = player.StartCoroutine(
+                    ApplyInvulnerability(player.stats.chaos.chaosAirAttack.invincibiltyWindow));
+                player.stateMeter?.addOrder(player.stats.order.orderAirAttack.meterGain);
+                yield return new WaitForSeconds(player.stats.order.orderAirAttack.resolveDuration);
                 break;
 
             case MoveVariant.DivineChaos:
-                yield return AerialHit(
-                    player.stats.divineChaos.divineAirAttack,
+                yield return new WaitForSeconds(player.stats.chaos.chaosAirAttack.windupDuration);
+                yield return WaitUntilGrounded();
+                SpawnRadialEffector(
+                    push: true,
+                    player.stats.divineChaos.divineAirAttack.pulseRadius,
+                    player.stats.divineChaos.divineAirAttack.pulseDuration,
                     player.stats.divineChaos.divineAirAttack.jumpAttackhb,
-                    waitForLanding: false);
-                player.stateMeter?.addChaos(player.stats.divineChaos.divineAirAttack.meterGain);
+                    player.stats.divineChaos.divineAirAttack.force);
+                player.stateMeter?.addChaos(player.stats.chaos.chaosAirAttack.meterGain);
+                yield return new WaitForSeconds(player.stats.chaos.chaosAirAttack.resolveDuration);
                 break;
         }
 
@@ -203,7 +215,7 @@ public class AttackAirborneState : BaseState<PlayerStateKey>
 
         if (player.attackPressed && !player.isGrounded) return PlayerStateKey.AttackAirborne;
         if (player.isGrounded)
-            return Mathf.Abs(player.HorizontalInput) > 0.01f ? PlayerStateKey.Move : PlayerStateKey.Idle;
+            return Mathf.Abs(player.horizontalInput) > 0.01f ? PlayerStateKey.Move : PlayerStateKey.Idle;
 
         return PlayerStateKey.Fall;
     }

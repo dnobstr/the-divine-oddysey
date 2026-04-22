@@ -162,7 +162,7 @@ public class AttackState : BaseState<PlayerStateKey>
 
         return !player.isGrounded
             ? PlayerStateKey.Fall
-            : Mathf.Abs(player.HorizontalInput) > 0.01f
+            : Mathf.Abs(player.horizontalInput) > 0.01f
             ? PlayerStateKey.Move
             : PlayerStateKey.Idle;
     }

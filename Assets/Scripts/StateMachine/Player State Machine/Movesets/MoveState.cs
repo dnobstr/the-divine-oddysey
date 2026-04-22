@@ -22,7 +22,7 @@ public class MoveState : BaseState<PlayerStateKey>
 
     public override void UpdateState()
     {
-        float h = player.HorizontalInput;
+        float h = player.horizontalInput;
         player.rb.linearVelocityX = h * player.moveSpeed;
         player.FlipTowards(h);
     }
@@ -41,7 +41,7 @@ public class MoveState : BaseState<PlayerStateKey>
         if (player.attackPressed)                        return PlayerStateKey.Attack;
         if (player.jumpPressed && player.isGrounded)     return PlayerStateKey.Jump;
         if (player.rb.linearVelocityY < 0 && !player.isGrounded) return PlayerStateKey.Fall;
-        if (Mathf.Abs(player.HorizontalInput) < 0.01f)   return PlayerStateKey.Idle;
+        if (Mathf.Abs(player.horizontalInput) < 0.01f)   return PlayerStateKey.Idle;
 
         return StateKey;
     }

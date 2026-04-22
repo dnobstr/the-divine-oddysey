@@ -74,7 +74,7 @@ public class JumpState : BaseState<PlayerStateKey>
     public override void UpdateState()
     {
         // Allow air-steering
-        float h = player.HorizontalInput;
+        float h = player.horizontalInput;
         player.rb.linearVelocity = new Vector2(h * player.moveSpeed, player.rb.linearVelocity.y);
         player.FlipTowards(h);
     }
@@ -95,7 +95,7 @@ public class JumpState : BaseState<PlayerStateKey>
         // Return to ground states once landed
         if (player.isGrounded && player.rb.linearVelocity.y <= 0f)
         {
-            return Mathf.Abs(player.HorizontalInput) > 0.01f
+            return Mathf.Abs(player.horizontalInput) > 0.01f
                 ? PlayerStateKey.Move
                 : PlayerStateKey.Idle;
         }

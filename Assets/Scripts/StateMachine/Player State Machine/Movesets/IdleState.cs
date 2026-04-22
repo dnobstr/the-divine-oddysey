@@ -35,7 +35,7 @@ public class IdleState : BaseState<PlayerStateKey>
         if (player.attackPressed)                        return PlayerStateKey.Attack;
         if (player.jumpPressed && player.isGrounded)     return PlayerStateKey.Jump;
         if (player.rb.linearVelocityY < 0 && !player.isGrounded) return PlayerStateKey.Fall;
-        if (Mathf.Abs(player.HorizontalInput) > 0.01f)   return PlayerStateKey.Move;
+        if (Mathf.Abs(player.horizontalInput) > 0.01f)   return PlayerStateKey.Move;
 
 
         return StateKey; // stay Idle
