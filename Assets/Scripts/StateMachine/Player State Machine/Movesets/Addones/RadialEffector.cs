@@ -3,46 +3,54 @@ using UnityEngine;
 
 /// <summary>
 /// Spawned by airborne attacks to push or pull nearby enemies.
-/// Set push=true for Order (outward), push=false for Chaos (inward).
+/// push=true  → outward (Order slam)
+/// push=false → inward  (Chaos slam)
+/// Moves enemy transforms directly since enemies use Transform.Translate.
 /// </summary>
 public class RadialEffector : MonoBehaviour
 {
     private PlayerController player;
     private float radius;
     private float duration;
-    private bool  push;
+    private float forceMag;
+    private bool push;
 
-    public void Init(PlayerController player, float radius, float duration, bool push)
+    /// <param name="push">true = push outward (Order), false = pull inward (Chaos)</param>
+    /// <param name="force">units per second to move enemies</param>
+    public void init(PlayerController player, float radius, float duration, bool push, float force)
     {
-        this.player   = player;
-        this.radius   = radius;
+        this.player = player;
+        this.radius = radius;
         this.duration = duration;
-        this.push     = push;
+        this.push = push;
+        this.forceMag = force;
 
-        StartCoroutine(ApplyEffect());
+        StartCoroutine(applyEffect());
     }
 
-    private IEnumerator ApplyEffect()
+    private IEnumerator applyEffect()
     {
-        float elapsed   = 0f;
-        float forceMag  = push
-            ? player.stats.order.orderAirAttack.force
-            : player.stats.chaos.chaosAirAttack.force;
+        float elapsed = 0f;
+
+        Transform t = GetComponentInParent<Transform>();
+        Vector3 scale = t.localScale;
+        scale.x = radius;
+        scale.y = radius / 2;
+        t.localScale = scale;
 
         while (elapsed < duration)
         {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, LayerMask.GetMask("Enemy"));
+            Collider2D[] hits = Physics2D.OverlapCircleAll(
+                transform.position, radius, LayerMask.GetMask("Enemy"));
 
             foreach (Collider2D hit in hits)
             {
-                Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
-                if (rb == null) continue;
-
                 Vector2 dir = (hit.transform.position - transform.position).normalized;
 
-                // push=true  → outward (Order slam)
-                // push=false → inward  (Chaos slam, negate direction)
-                rb.AddForce((push ? dir : -dir) * forceMag, ForceMode2D.Force);
+                // push=true  → outward (Order)
+                // push=false → inward  (Chaos, negate direction)
+                Vector2 move = (push ? dir : -dir) * forceMag * Time.deltaTime;
+                hit.transform.Translate(move);
             }
 
             elapsed += Time.deltaTime;

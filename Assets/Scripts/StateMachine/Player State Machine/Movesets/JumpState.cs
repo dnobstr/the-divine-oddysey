@@ -12,13 +12,7 @@ public class JumpState : BaseState<PlayerStateKey>
 {
     private readonly PlayerController player;
     private MoveVariant variant;
-    private bool        jumpApplied;
-
-    // Tune per-variant modifiers
-    private const float OrderHeightMult   = 1.35f;
-    private const float ChaosHeightMult   = 0.75f;
-    private const float DivineOrderGrav   = 0.4f;  // gravity scale during float
-    private const float DivineChaosHeight = 2.2f;
+    private bool jumpApplied;
 
     private float originalGravity;
 
@@ -59,11 +53,11 @@ public class JumpState : BaseState<PlayerStateKey>
                 break;
 
             case MoveVariant.DivineOrder:
-                player.rb.gravityScale = DivineOrderGrav;
+                player.rb.gravityScale = player.stats.divineOrder.divineJump.gravityScale;
                 break;
 
             case MoveVariant.DivineChaos:
-                force *= DivineChaosHeight;
+                force *= player.stats.divineChaos.divineJump.force;
                 break;
         }
 
@@ -80,7 +74,7 @@ public class JumpState : BaseState<PlayerStateKey>
     public override void UpdateState()
     {
         // Allow air-steering
-        float h = player.HorizontalInput;
+        float h = player.horizontalInput;
         player.rb.linearVelocity = new Vector2(h * player.moveSpeed, player.rb.linearVelocity.y);
         player.FlipTowards(h);
     }
@@ -101,7 +95,7 @@ public class JumpState : BaseState<PlayerStateKey>
         // Return to ground states once landed
         if (player.isGrounded && player.rb.linearVelocity.y <= 0f)
         {
-            return Mathf.Abs(player.HorizontalInput) > 0.01f
+            return Mathf.Abs(player.horizontalInput) > 0.01f
                 ? PlayerStateKey.Move
                 : PlayerStateKey.Idle;
         }

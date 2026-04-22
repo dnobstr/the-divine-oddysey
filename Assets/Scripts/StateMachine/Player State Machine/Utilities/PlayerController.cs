@@ -13,6 +13,7 @@ public class PlayerController : StateManager<PlayerStateKey>
     // ── Inspector tunables ──────────────────────────────────────────────────
     [Header("Movement")]
     public float moveSpeed    = 8f;
+    public bool mobile;
 
     [Header("Stats")]
     public PlayerStats stats;
@@ -24,7 +25,7 @@ public class PlayerController : StateManager<PlayerStateKey>
     public ModeManager modeManager;
 
     // ── Runtime state shared across state objects ───────────────────────────
-    [HideInInspector] public float   HorizontalInput;
+    [HideInInspector] public float   horizontalInput;
     [HideInInspector] public bool    jumpPressed;
     [HideInInspector] public bool    dashPressed;
     [HideInInspector] public bool    attackPressed;
@@ -73,11 +74,46 @@ public class PlayerController : StateManager<PlayerStateKey>
     // ── Helpers ─────────────────────────────────────────────────────────────
     private void GatherInput()
     {
-        HorizontalInput = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump")) jumpPressed = true;
-        if (Input.GetKeyDown(KeyCode.LeftShift)) dashPressed = true;
-        if (Input.GetKeyDown(KeyCode.LeftControl)) switchMode = true;
-        if (Input.GetKeyDown(KeyCode.Mouse0)) attackPressed = true;
+        if (!mobile) horizontalInput = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Jump")) jump();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) dash();
+        if (Input.GetKeyDown(KeyCode.LeftControl)) switchVariant();
+        if (Input.GetKeyDown(KeyCode.Mouse1)) attack();
+    }
+
+    public void moveLeft()
+    {
+        horizontalInput = -1;
+    }
+
+    public void moveRight()
+    {
+        horizontalInput = 1;
+    }
+
+    public void stopMove()
+    {
+        horizontalInput = 0;
+    }
+
+    public void jump()
+    {
+        jumpPressed = true;
+    }
+
+    public void dash()
+    {
+        dashPressed = true;
+    }
+
+    public void switchVariant()
+    {
+        switchMode = true;
+    }
+
+    public void attack()
+    {
+        attackPressed = true;
     }
 
     private void ClearFrameInput()

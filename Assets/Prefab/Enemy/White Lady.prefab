@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6568143511755739034}
   - component: {fileID: 3348001571320794923}
   - component: {fileID: 2347252958770927030}
+  - component: {fileID: -4821190630436635497}
   m_Layer: 7
   m_Name: White Lady
   m_TagString: Enemy
@@ -154,6 +155,8 @@ MonoBehaviour:
   attackDamage: 0
   attackWindup: 0.2
   attackDuration: 0.3
+  contactCooldown: 1
+  lastDamageTime: 0
   wanderSpeed: 0.5
   wanderRadius: 3
   wanderInterval: 0
@@ -269,3 +272,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.37, y: 0.002614677}
   m_EdgeRadius: 0
+--- !u!114 &-4821190630436635497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135434271557249239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8678440aa2821bf4ea07b3191b676301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  currentHealth: 0
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []

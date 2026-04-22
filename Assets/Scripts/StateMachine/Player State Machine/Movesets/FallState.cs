@@ -27,7 +27,7 @@ public class FallState : BaseState<PlayerStateKey>
     public override void UpdateState()
     {
         // Air steering only — no force applied
-        float h = player.HorizontalInput;
+        float h = player.horizontalInput;
         player.rb.linearVelocity = new Vector2(h * player.moveSpeed, player.rb.linearVelocity.y);
         player.FlipTowards(h);
     }
@@ -48,7 +48,7 @@ public class FallState : BaseState<PlayerStateKey>
 
         if (player.isGrounded && player.rb.linearVelocity.y <= 0f)
         {
-            return Mathf.Abs(player.HorizontalInput) > 0.01f
+            return Mathf.Abs(player.horizontalInput) > 0.01f
                 ? PlayerStateKey.Move
                 : PlayerStateKey.Idle;
         }
