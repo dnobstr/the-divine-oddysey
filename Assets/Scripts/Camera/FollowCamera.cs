@@ -13,7 +13,11 @@ public class FollowCamera : MonoBehaviour
     void LateUpdate()
     {
         var player = PlayerController.Instance;
-        if (player == null) return;
+        if (player == null)
+        {
+            Debug.LogWarning("FollowCamera: PlayerController.Instance is null");
+            return;
+        }
 
         float targetX = Mathf.Clamp(player.transform.position.x, minX, maxX);
         float targetY = Mathf.Clamp(player.transform.position.y, minY, maxY);

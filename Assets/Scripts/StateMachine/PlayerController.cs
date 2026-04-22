@@ -1,7 +1,5 @@
 using UnityEngine;
 
-using UnityEngine;
-
 public class PlayerController : PlayerStateManager<PlayerStateKey>
 {
     // Instance for other scripts (e.g. FollowCamera) to reference
@@ -34,6 +32,13 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
     public bool dashPressed;
     public bool attackPressed;
     private int _cycleIndex = 0;
+
+    // Mobile / external input helpers
+    private float externalMoveInput = 0f;
+    private bool externalMoveActive = false;
+    private bool jumpRequest = false;
+    private bool dashRequest = false;
+    private bool attackRequest = false;
 
     void Awake()
     {
@@ -82,24 +87,35 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         else
             endDash();
 
-        moveInput = Input.GetAxisRaw("Horizontal");
+        // Combine keyboard/desktop input with external (mobile) input
+        if (externalMoveActive)
+            moveInput = externalMoveInput;
+        else
+            moveInput = Input.GetAxisRaw("Horizontal");
+
         if (moveInput != 0)
             move();
         else
             anim.SetBool("isMoving", false);
 
-        jumpPressed = Input.GetButtonDown("Jump");
-        dashPressed = Input.GetKeyDown(KeyCode.LeftShift);
+        // Edge inputs: allow mobile UI to request a press that lasts for one Update frame
+        jumpPressed = jumpRequest || Input.GetButtonDown("Jump");
+        dashPressed = dashRequest || Input.GetKeyDown(KeyCode.LeftShift);
         if (dashPressed)
             dash();
 
-        attackPressed = Input.GetMouseButtonDown(0);
+        attackPressed = attackRequest || Input.GetMouseButtonDown(0);
 
         if (Input.GetKeyDown(KeyCode.LeftControl)) cycleState();
 
         falling();
 
         base.Update();
+
+        // Clear one-frame requests so mobile presses behave like button-down
+        jumpRequest = false;
+        dashRequest = false;
+        attackRequest = false;
     }
 
     private void dash()
@@ -172,4 +188,34 @@ public class PlayerController : PlayerStateManager<PlayerStateKey>
         s.x *= -1;
         transform.localScale = s;
     }
+
+    // ---- Mobile UI / External input API ----
+    // Call from UI buttons/joystick
+
+    // Joystick or virtual axis: value between -1 (left) and 1 (right)
+    public void SetMoveInput(float axis)
+    {
+        externalMoveInput = Mathf.Clamp(axis, -1f, 1f);
+        externalMoveActive = true;
+    }
+
+    // Call when releasing joystick / stopping control
+    public void StopMoveInput()
+    {
+        externalMoveActive = false;
+        externalMoveInput = 0f;
+    }
+
+    // Convenience for simple left/right buttons
+    public void StartMoveLeft() => SetMoveInput(-1f);
+    public void StartMoveRight() => SetMoveInput(1f);
+    public void StopMove() => StopMoveInput();
+
+    // Action buttons (one-frame press)
+    public void PressJump() => jumpRequest = true;
+    public void PressDash() => dashRequest = true;
+    public void PressAttack() => attackRequest = true;
+
+    // Optional: cycle state via UI
+    public void PressCycleState() => cycleState();
 }

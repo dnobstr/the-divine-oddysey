@@ -96,6 +96,21 @@ public class SceneTransitionManager : MonoBehaviour
         }
     }
 
+    // Added: allow other scripts to trigger fade without changing scenes
+    public void PlayFadeOut()
+    {
+        if (transitionAnim == null) return;
+        transitionAnim.ResetTrigger(fadeInTrigger);
+        transitionAnim.SetTrigger(fadeOutTrigger);
+    }
+
+    public void PlayFadeIn()
+    {
+        if (transitionAnim == null) return;
+        transitionAnim.ResetTrigger(fadeOutTrigger);
+        transitionAnim.SetTrigger(fadeInTrigger);
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
