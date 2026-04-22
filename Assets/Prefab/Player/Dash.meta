@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab/Player/Dash.meta
 guid: e7f0bbb3a21886b4cbe9aa21b5ab35cf
+========
+guid: aa412ad6edeb23043bb35ccac769f4e8
+>>>>>>>> 925a02560aaa3bd7426dc964b4238437998c9f50:Assets/Font.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

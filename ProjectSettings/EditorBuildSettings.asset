@@ -20,6 +20,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Act 1/Act 1 (Scene 4).unity
     guid: 9c25105701f62bb4996cfd8b5e684277
+  - enabled: 1
+    path: Assets/Scenes/Act 1.unity
+    guid: 7555579edc946f94f9797f9e8985a102
+  - enabled: 1
+    path: Assets/Scenes/IntroCutscene.unity
+    guid: 19533a04f4899724ab6028f948239c00
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 2732caf070b07724a9ef91bc092b48d6
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ac0c86b9d43972d4280bb6d03dc8697d
+  - enabled: 1
+    path: Assets/Scenes/Act 2.unity
+    guid: 947b41f5cebb07040946f77bd4ca7dc6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
