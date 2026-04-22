@@ -90,6 +90,7 @@ public class OrderAirAttackStats : AirAttackStats
 {
     public float pulseRadius = 4f;
     public float pulseDuration = 1.5f;
+    public float invincibiltyWindow = 2f;
 }
 
 [System.Serializable]
@@ -115,7 +116,7 @@ public class ChaosStats
     public ChaosDashStats chaosDash;
     public JumpStats chaosJump;
     public AttackStats chaosAttack;
-    public ChaosAirAttackStats chaosAirAttack;
+    public OrderAirAttackStats chaosAirAttack;
 }
 
 [System.Serializable]
@@ -129,18 +130,12 @@ public class ChaosDashStats : DashStats
 }
 
 [System.Serializable]
-public class ChaosAirAttackStats : OrderAirAttackStats
-{
-    public float invincibiltyWindow = 2f;
-}
-
-[System.Serializable]
 public class DivineChaosStats 
 {
     public DivineChaosDashStats divineDash;
     public DivineChaosJumpStats divineJump;
     public DivineChaosAttackStats divineAttack;
-    public AirAttackStats divineAirAttack;
+    public OrderAirAttackStats divineAirAttack;
 }
 
 [System.Serializable]

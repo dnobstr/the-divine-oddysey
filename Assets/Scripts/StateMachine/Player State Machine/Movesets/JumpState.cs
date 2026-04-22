@@ -12,13 +12,7 @@ public class JumpState : BaseState<PlayerStateKey>
 {
     private readonly PlayerController player;
     private MoveVariant variant;
-    private bool        jumpApplied;
-
-    // Tune per-variant modifiers
-    private const float OrderHeightMult   = 1.35f;
-    private const float ChaosHeightMult   = 0.75f;
-    private const float DivineOrderGrav   = 0.4f;  // gravity scale during float
-    private const float DivineChaosHeight = 2.2f;
+    private bool jumpApplied;
 
     private float originalGravity;
 
@@ -59,11 +53,11 @@ public class JumpState : BaseState<PlayerStateKey>
                 break;
 
             case MoveVariant.DivineOrder:
-                player.rb.gravityScale = DivineOrderGrav;
+                player.rb.gravityScale = player.stats.divineOrder.divineJump.gravityScale;
                 break;
 
             case MoveVariant.DivineChaos:
-                force *= DivineChaosHeight;
+                force *= player.stats.divineChaos.divineJump.force;
                 break;
         }
 
