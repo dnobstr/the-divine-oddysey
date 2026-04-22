@@ -15,9 +15,9 @@ public class FireTrailSegment : MonoBehaviour
     public void Init(PlayerController player, bool blastProc)
     {
         this.player = player;
-        dps = player.stats.chaos.attack.damage * player.stats.chaos.trailDOTMultiplier;
+        dps = player.stats.chaos.chaosAttack.damage * player.stats.chaos.chaosDash.trailDOTMultiplier;
         isBlastProc = blastProc;
-        Destroy(gameObject, player.stats.chaos.trailLifetime);
+        Destroy(gameObject, player.stats.chaos.chaosDash.trailLifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -26,6 +26,10 @@ public class FireTrailSegment : MonoBehaviour
 
         IEffectable effectable = other.GetComponent<IEffectable>();
         effectable?.Ignite(dps);
+
+        // also apply DOT to Health if present
+        Health hp = other.GetComponent<Health>();
+        hp?.applyDOT(dps, player.stats.chaos.chaosDash.trailLifetime, player.stats.chaos.chaosDash.trailTickRate * player.stats.chaos.chaosDash.trailLifetime);
 
         if (isBlastProc)
         {
@@ -59,8 +63,8 @@ public class FireTrailSegment : MonoBehaviour
         foreach (var hit in hits)
         {
             if (hit.CompareTag(player.tag)) continue;
-            PlayerHp hp = hit.GetComponent<PlayerHp>();
-            hp?.takeDmg(player.stats.chaos.attack.damage * 1.5f);
+            Health hp = hit.GetComponent<Health>();
+            hp?.takeDamage(player.stats.chaos.chaosAttack.damage * 1.5f);
         }
 
         // Optional: spawn VFX prefab here

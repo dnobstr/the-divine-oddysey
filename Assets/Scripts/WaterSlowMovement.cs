@@ -18,6 +18,7 @@ public class WaterSlowMovement : MonoBehaviour
     private float originalMoveSpeed;
     private float originalDrag;
     private int playersInsideCount = 0;
+    
 
     void Reset()
     {

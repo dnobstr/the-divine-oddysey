@@ -4,30 +4,33 @@ public class AttackHitbox : MonoBehaviour
 {
     public PolygonCollider2D atkHitbox;
     private PlayerController player;
-    private PlayerHp hp;
+    private Health hp;
     private float dmg;
-    public void init(PlayerController playerController, float duration, float dmg)
+
+    public void init(PlayerController playerController, float duration, float damage)
     {
         player = playerController;
-        dmg = dmg;
+        this.dmg = damage;
 
         Destroy(gameObject, duration);
     }
+
     void Awake()
     {
         atkHitbox = GetComponent<PolygonCollider2D>();
         player = GetComponentInParent<PlayerController>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.CompareTag(collision.gameObject.tag))
             return;
 
-        hp = collision.GetComponent<PlayerHp>();
+        hp = collision.GetComponent<Health>();
         
         if (hp == null) 
             return;
 
-        hp.takeDmg(dmg);
+        hp.takeDamage(dmg);
     }
 }
