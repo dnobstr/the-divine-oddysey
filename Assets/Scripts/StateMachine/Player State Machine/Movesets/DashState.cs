@@ -22,7 +22,10 @@ public class DashState : BaseState<PlayerStateKey>
         player.rb.gravityScale = 0f;
         player.rb.linearVelocity = Vector2.zero;
 
-        player.anim?.SetTrigger("dash");
+        if (variant == MoveVariant.DivineChaos || variant == MoveVariant.DivineOrder)
+            player.anim?.SetTrigger($"dash - {variant}");
+        else
+            player.anim?.SetTrigger($"dash - Normal");
 
         StartDash();
 
